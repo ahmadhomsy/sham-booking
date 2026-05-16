@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class PageTransitions {
+abstract final class PageTransitions {
   // 1. FADE - Most common, smooth and elegant
   static Widget fadeTransition(
     BuildContext context,

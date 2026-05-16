@@ -34,6 +34,30 @@ dev_dependencies:
   build_runner: ^2.15.0
   very_good_analysis: ^10.2.0
   test: ^1.30.0
+  flutter_flavorizr: ^2.4.2
 
 flutter:
   uses-material-design: true
+
+flavorizr:
+  ide: "idea"
+  app:
+    android:
+      flavorDimensions: "default"
+    ios:
+      bundleId: "com.example.shambooking"
+  flavors:
+    development:
+      app:
+        name: "ShamBooking_Development"
+      android:
+        applicationId: "com.example.shambooking.dev"
+      ios:
+        bundleId: "com.example.shambooking.dev"
+    production:
+      app:
+        name: "ShamBooking_Production"
+      android:
+        applicationId: "com.example.shambooking.prod"
+      ios:
+        bundleId: "com.example.shambooking.prod"
