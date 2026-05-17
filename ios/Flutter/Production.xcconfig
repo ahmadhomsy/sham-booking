@@ -1,0 +1,7 @@
+#include "Generated.xcconfig"
+
+FLUTTER_TARGET=lib/main_production.dart
+ASSETCATALOG_COMPILER_APPICON_NAME=AppIcon-Production
+BUNDLE_DISPLAY_NAME=ShamBooking
+PRODUCT_BUNDLE_IDENTIFIER=com.example.shambooking.prod
+
