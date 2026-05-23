@@ -1,6 +1,14 @@
+import 'dart:async';
+
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sham_booking/core/helpers/page_transitions.dart';
+import 'package:sham_booking/features/auth/presentation/pages/sign_in_age.dart';
+import 'package:sham_booking/features/home/presentation/pages/home_page.dart';
+import 'package:sham_booking/features/onboarding/presentation/pages/onboarding_page.dart';
+import 'package:sham_booking/features/splash/presentation/cubit/splash_cubit.dart';
 import 'package:sham_booking/features/splash/presentation/pages/splash_page.dart';
+import 'package:sham_booking/injection_container.dart';
 
 final GoRouter router = GoRouter(
   initialLocation: '/splash',
@@ -10,7 +18,41 @@ final GoRouter router = GoRouter(
       name: 'splash',
       pageBuilder: (context, state) => CustomTransitionPage(
         key: state.pageKey,
-        child: const SplashPage(),
+        child: BlocProvider(
+          create: (context) {
+            final cubit = sl<SplashCubit>();
+            unawaited(cubit.initSplash());
+            return cubit;
+          },
+          child: const SplashPage(),
+        ),
+        transitionsBuilder: PageTransitions.fadeTransition,
+      ),
+    ),
+    GoRoute(
+      path: '/onBoarding',
+      name: 'onBoarding',
+      pageBuilder: (context, state) => CustomTransitionPage(
+        key: state.pageKey,
+        child: const OnboardingPage(),
+        transitionsBuilder: PageTransitions.fadeTransition,
+      ),
+    ),
+    GoRoute(
+      path: '/signIn',
+      name: 'signIn',
+      pageBuilder: (context, state) => CustomTransitionPage(
+        key: state.pageKey,
+        child: const SignInPage(),
+        transitionsBuilder: PageTransitions.fadeTransition,
+      ),
+    ),
+    GoRoute(
+      path: '/home',
+      name: 'home',
+      pageBuilder: (context, state) => CustomTransitionPage(
+        key: state.pageKey,
+        child: const HomePage(),
         transitionsBuilder: PageTransitions.fadeTransition,
       ),
     ),
