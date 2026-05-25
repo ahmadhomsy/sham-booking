@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:sham_booking/core/theme/app_colors.dart';
 
-class NoInternetBottomSheet extends StatelessWidget {
-  const NoInternetBottomSheet({required this.onPressed, super.key});
+class ErrorBottomSheet extends StatelessWidget {
+  const ErrorBottomSheet({
+    required this.errorMessage,
+    required this.onPressed,
+    super.key,
+  });
   final void Function() onPressed;
+  final String errorMessage;
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: const BoxDecoration(
-        color: Colors.white,
+        color: AppColors.softSand,
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(25),
         ),
@@ -28,9 +33,9 @@ class NoInternetBottomSheet extends StatelessWidget {
 
           const SizedBox(height: 20),
 
-          const Text(
-            'No Internet connection',
-            style: TextStyle(
+          Text(
+            errorMessage,
+            style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w500,
             ),

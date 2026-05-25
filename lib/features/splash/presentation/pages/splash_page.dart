@@ -1,5 +1,4 @@
 import 'dart:ui';
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,21 +23,24 @@ class SplashPage extends StatelessWidget {
             isDismissible: false,
             enableDrag: false,
             backgroundColor: Colors.transparent,
-            builder: (_) => NoInternetBottomSheet(
+            builder: (_) => ErrorBottomSheet(
               onPressed: () async {
                 Navigator.pop(context);
                 await context.read<SplashCubit>().initSplash();
               },
+              errorMessage: state.message,
             ),
           );
           return;
         }
         if (state.status == SplashStatus.completed) {
           if (state.isFirstOpen) {
-            context.go('/onboarding');
+            context.go('/onBoarding');
           } else if (!state.isSignedIn) {
             context.go('/signIn');
-          } else if (state.status == SplashStatus.completed) {
+          } else if (!state.isEmailVerified) {
+            context.go('/emailVerification');
+          } else if (state.isEmailVerified) {
             context.go('/home');
           }
         }

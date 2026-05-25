@@ -25,12 +25,12 @@ class AuthRepositoryImpl implements AuthRepositories {
       return Left(IsFirstOpenFailure());
     } on NotSignException {
       return Left(NotSignFailure());
-    }  on ServerException {
+    } on ServerException {
       return Left(ServerFailure());
     } on NotVerifiedException {
       return Left(NotVerifiedFailure());
-    } on UnExpectedException {
-      return Left(UnExpectedFailure());
+    } on UnexpectedException {
+      return Left(UnexpectedFailure());
     }
   }
 

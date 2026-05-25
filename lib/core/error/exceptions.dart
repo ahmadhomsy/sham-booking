@@ -1,6 +1,4 @@
-class SignInException implements Exception {}
-
-class WeekPasswordException implements Exception {}
+class WeakPasswordException implements Exception {}
 
 class AlreadyRegisteredException implements Exception {}
 
@@ -14,10 +12,10 @@ class TooManyRequestsException implements Exception {}
 
 class OfflineException implements Exception {}
 
-class EmptyCashException implements Exception {}
+class EmptyCacheException implements Exception {}
 
 class NotSignException implements Exception {}
 
-class UnExpectedException implements Exception {}
+class UnexpectedException implements Exception {}
 
 class InvalidEmailException implements Exception {}

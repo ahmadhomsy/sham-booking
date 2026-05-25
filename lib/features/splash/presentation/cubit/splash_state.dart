@@ -9,7 +9,7 @@ class SplashState extends Equatable {
     this.isFirstOpen = false,
     this.isSignedIn = false,
     this.isEmailVerified = false,
-    this.message,
+    this.message = '',
   });
 
   final SplashStatus status;
@@ -17,7 +17,7 @@ class SplashState extends Equatable {
   final bool isFirstOpen;
   final bool isSignedIn;
   final bool isEmailVerified;
-  final String? message;
+  final String message;
 
   SplashState copyWith({
     SplashStatus? status,

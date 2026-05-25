@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sham_booking/core/helpers/page_transitions.dart';
-import 'package:sham_booking/features/auth/presentation/pages/sign_in_age.dart';
+import 'package:sham_booking/features/auth/presentation/pages/email_verification_page.dart';
+import 'package:sham_booking/features/auth/presentation/pages/sign_in_page.dart';
 import 'package:sham_booking/features/home/presentation/pages/home_page.dart';
 import 'package:sham_booking/features/onboarding/presentation/pages/onboarding_page.dart';
 import 'package:sham_booking/features/splash/presentation/cubit/splash_cubit.dart';
@@ -53,6 +54,15 @@ final GoRouter router = GoRouter(
       pageBuilder: (context, state) => CustomTransitionPage(
         key: state.pageKey,
         child: const HomePage(),
+        transitionsBuilder: PageTransitions.fadeTransition,
+      ),
+    ),
+    GoRoute(
+      path: '/emailVerification',
+      name: 'emailVerification',
+      pageBuilder: (context, state) => CustomTransitionPage(
+        key: state.pageKey,
+        child: const EmailVerificationPage(),
         transitionsBuilder: PageTransitions.fadeTransition,
       ),
     ),

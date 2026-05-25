@@ -25,14 +25,15 @@ class SplashCubit extends Cubit<SplashState> {
               status: SplashStatus.completed,
             ),
           );
+        } else {
+          emit(
+            state.copyWith(
+              progress: 1,
+              status: SplashStatus.completed,
+              isEmailVerified: true,
+            ),
+          );
         }
-        emit(
-          state.copyWith(
-            progress: 1,
-            status: SplashStatus.completed,
-            isSignedIn: true,
-          ),
-        );
       },
     );
   }
