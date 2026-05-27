@@ -4,14 +4,14 @@ import 'package:sham_booking/core/theme/app_colors.dart';
 class AppDecorations {
   AppDecorations._();
 
-  static BoxDecoration splashDecoration = const BoxDecoration(
+  static const BoxDecoration splashDecoration = BoxDecoration(
     gradient: LinearGradient(
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
       colors: [AppColors.deepSapphireBlue, AppColors.darkGradientEnd],
     ),
   );
-  static BoxDecoration containerLogoDecoration = BoxDecoration(
+  static final BoxDecoration containerLogoDecoration = BoxDecoration(
     color: AppColors.softSand, // Soft Sand
     borderRadius: BorderRadius.circular(16),
     boxShadow: [
@@ -22,7 +22,7 @@ class AppDecorations {
       ),
     ],
   );
-  static BoxDecoration glassDecoration = BoxDecoration(
+  static final BoxDecoration glassDecoration = BoxDecoration(
     color: Colors.white.withValues(alpha: 0.05),
     borderRadius: BorderRadius.circular(16),
     border: Border.all(
