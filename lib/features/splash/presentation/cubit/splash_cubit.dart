@@ -21,7 +21,8 @@ class SplashCubit extends Cubit<SplashState> {
           emit(
             state.copyWith(
               progress: 1,
-              isSignedIn: false,
+              isSignedIn: true,
+              isEmailVerified: false,
               status: SplashStatus.completed,
             ),
           );
@@ -31,6 +32,7 @@ class SplashCubit extends Cubit<SplashState> {
               progress: 1,
               status: SplashStatus.completed,
               isEmailVerified: true,
+              isSignedIn: true,
             ),
           );
         }
@@ -46,6 +48,14 @@ class SplashCubit extends Cubit<SplashState> {
         state.copyWith(
           progress: 1,
           isFirstOpen: true,
+          status: SplashStatus.completed,
+        ),
+      );
+    } else if (failure is NotSignFailure) {
+      emit(
+        state.copyWith(
+          progress: 1,
+          isSignedIn: false,
           status: SplashStatus.completed,
         ),
       );

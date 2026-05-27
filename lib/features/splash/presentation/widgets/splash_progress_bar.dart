@@ -16,7 +16,7 @@ class SplashProgressBar extends StatelessWidget {
       buildWhen: (p, c) => p.progress != c.progress,
       builder: (context, state) {
         return TweenAnimationBuilder<double>(
-          tween: Tween(end: state.progress),
+          tween: Tween(begin: 0, end: state.progress),
           duration: 400.ms,
           curve: Curves.easeOut,
           builder: (context, value, child) {
@@ -34,6 +34,6 @@ class SplashProgressBar extends StatelessWidget {
           },
         );
       },
-    ).animate().fadeIn(duration: 600.ms).slideY(begin: 0.3);
+    );
   }
 }

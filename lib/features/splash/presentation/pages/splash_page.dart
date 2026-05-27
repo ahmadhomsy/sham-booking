@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sham_booking/core/theme/app_decorations.dart';
-import 'package:sham_booking/core/widgets/no_internet_bottom_sheet.dart';
+import 'package:sham_booking/core/widgets/error_bottom_sheet.dart';
 import 'package:sham_booking/features/splash/presentation/cubit/splash_cubit.dart';
 import 'package:sham_booking/features/splash/presentation/cubit/splash_state.dart';
 import 'package:sham_booking/features/splash/presentation/widgets/splash_content.dart';

@@ -49,7 +49,6 @@ flutter:
   uses-material-design: true
   assets:
     - assets/logos/
-    - assets/images/
     - assets/lang/
 flavorizr:
   ide: "idea"

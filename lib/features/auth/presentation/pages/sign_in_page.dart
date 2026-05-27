@@ -16,7 +16,7 @@ class SignInPage extends StatelessWidget {
           await box.write(isVerifiedKey, true);
         },
         child: const Center(
-          child: Text("Sign In Age Page"),
+          child: Text("Sign In Page"),
         ),
       ),
     );

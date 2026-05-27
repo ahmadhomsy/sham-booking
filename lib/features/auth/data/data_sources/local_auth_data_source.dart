@@ -13,12 +13,10 @@ class LocalAuthDataSourceImpl implements LocalAuthDataSource {
   Future<bool> loggedIn() async {
     if (box.read<bool>(isFirstOpenKey) == null) {
       throw IsFirstOpenException();
-    } else if (box.read<bool>(isVerifiedKey) == true) {
-      return true;
-    } else if (box.read<bool>(isVerifiedKey) == false) {
-      return false;
-    } else {
+    } else if (box.read<bool>(isVerifiedKey) == null) {
       throw NotSignException();
+    } else {
+      return box.read<bool>(isVerifiedKey)!;
     }
   }
 }

@@ -13,8 +13,11 @@ class AuthRepositoryImpl implements AuthRepositories {
   final NetworkInfo networkInfo;
   final LocalAuthDataSource localDataSource;
 
-  Future<Either<Failure, T>> _execute<T>(Future<T> Function() action) async {
-    if (!await networkInfo.isConnected) {
+  Future<Either<Failure, T>> _execute<T>({
+    required Future<T> Function() action,
+    bool requiresConnection = true,
+  }) async {
+    if (requiresConnection && !await networkInfo.isConnected) {
       return Left(OfflineFailure());
     }
 
@@ -36,6 +39,9 @@ class AuthRepositoryImpl implements AuthRepositories {
 
   @override
   Future<Either<Failure, bool>> loggedIn() async {
-    return _execute(localDataSource.loggedIn);
+    return _execute(
+      action: localDataSource.loggedIn,
+      requiresConnection: false,
+    );
   }
 }
