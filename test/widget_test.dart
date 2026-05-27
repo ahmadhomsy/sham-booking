@@ -39,6 +39,14 @@ void main() {
     );
   });
 
+  tearDownAll(() {
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(
+          const MethodChannel('plugins.flutter.io/path_provider'),
+          null,
+        );
+  });
+
   testWidgets('App basic smoke test', (tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const MyApp());
