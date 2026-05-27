@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "791130643388",
+    "project_id": "sham-booking",
+    "storage_bucket": "sham-booking.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:791130643388:android:1e16a3d868c86da57069b9",
+        "android_client_info": {
+          "package_name": "com.example.sham_booking"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC41KZjnN6MBP3fV6Md5soF8yqob1h8zqs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:791130643388:android:33df720c89dcf10e7069b9",
+        "android_client_info": {
+          "package_name": "com.example.sham_booking.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC41KZjnN6MBP3fV6Md5soF8yqob1h8zqs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
