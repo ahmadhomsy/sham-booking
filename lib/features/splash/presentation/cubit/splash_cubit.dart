@@ -11,7 +11,7 @@ class SplashCubit extends Cubit<SplashState> {
 
   Future<void> initSplash() async {
     emit(state.copyWith(status: SplashStatus.loading, progress: 0.3));
-    await Future<void>.delayed(const Duration(milliseconds: 800));
+    await Future<void>.delayed(const Duration(milliseconds: 2000));
 
     final result = await loggedInUseCase();
     result.fold(

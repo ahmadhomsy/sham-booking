@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AppTextStyles {
   AppTextStyles._();
 
-  static const TextStyle notoSerif32whiteW600 = const TextStyle(
+  static const TextStyle notoSerif32whiteW600 = TextStyle(
     // fontFamily: 'Noto Serif',
     fontSize: 32,
     fontWeight: FontWeight.w600,

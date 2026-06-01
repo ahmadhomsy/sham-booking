@@ -50,6 +50,7 @@ flutter:
   assets:
     - assets/logos/
     - assets/lang/
+    - assets/images/
 flavorizr:
   ide: "idea"
   app:

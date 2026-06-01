@@ -6,6 +6,7 @@ import 'package:sham_booking/core/helpers/page_transitions.dart';
 import 'package:sham_booking/features/auth/presentation/pages/email_verification_page.dart';
 import 'package:sham_booking/features/auth/presentation/pages/sign_in_page.dart';
 import 'package:sham_booking/features/home/presentation/pages/home_page.dart';
+import 'package:sham_booking/features/onboarding/presentation/cubit/on_boarding_cubit.dart';
 import 'package:sham_booking/features/onboarding/presentation/pages/onboarding_page.dart';
 import 'package:sham_booking/features/splash/presentation/cubit/splash_cubit.dart';
 import 'package:sham_booking/features/splash/presentation/pages/splash_page.dart';
@@ -35,7 +36,10 @@ final GoRouter router = GoRouter(
       name: 'onBoarding',
       pageBuilder: (context, state) => CustomTransitionPage(
         key: state.pageKey,
-        child: const OnboardingPage(),
+        child: BlocProvider(
+          create: (_) => sl<OnBoardingCubit>(),
+          child: const OnboardingPage(),
+        ),
         transitionsBuilder: PageTransitions.fadeTransition,
       ),
     ),
