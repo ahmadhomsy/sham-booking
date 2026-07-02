@@ -13,8 +13,6 @@ class NotSignFailure extends Failure {}
 
 class NotVerifiedFailure extends Failure {}
 
-class ServerFailure extends Failure {}
-
 class EmptyCacheFailure extends Failure {}
 
 class UnexpectedFailure extends Failure {}
@@ -22,3 +20,13 @@ class UnexpectedFailure extends Failure {}
 class WeakPasswordFailure extends Failure {}
 
 class AlreadyRegisteredFailure extends Failure {}
+
+class ServerFailure extends Failure {
+  ServerFailure({
+    required this.message,
+    this.statusCode,
+  });
+
+  final String message;
+  final int? statusCode;
+}

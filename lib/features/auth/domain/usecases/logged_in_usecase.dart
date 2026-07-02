@@ -6,7 +6,7 @@ class LoggedInUseCase {
   LoggedInUseCase(this.repository);
   final AuthRepositories repository;
 
-  Future<Either<Failure, bool>> call() async {
+  Future<Either<Failure, bool>> call() {
     return repository.loggedIn();
   }
 }

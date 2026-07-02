@@ -20,11 +20,8 @@ class MyApp extends StatelessWidget {
         final supportedLocales =
             easyLocalization?.supportedLocales ?? const [fallbackLocale];
         final localizationDelegates = easyLocalization?.delegates;
-        final resolvedLocale = (box.read<bool>(enLangKey) == null)
-            ? (easyLocalization?.locale ?? fallbackLocale)
-            : (box.read<bool>(enLangKey) == true)
-            ? const Locale('en')
-            : const Locale('ar');
+
+        final resolvedLocale = Locale(box.read<String>(enLangKey) ?? 'en');
 
         return MaterialApp.router(
           localizationsDelegates: localizationDelegates,
