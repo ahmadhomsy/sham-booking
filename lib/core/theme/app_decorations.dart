@@ -8,11 +8,11 @@ class AppDecorations {
     gradient: LinearGradient(
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
-      colors: [AppColors.deepSapphireBlue, AppColors.darkGradientEnd],
+      colors: [AppColors.primaryContainer, AppColors.secondaryContainer],
     ),
   );
   static final BoxDecoration containerLogoDecoration = BoxDecoration(
-    color: AppColors.softSand, // Soft Sand
+    color: AppColors.backgroundStart,
     borderRadius: BorderRadius.circular(16),
     boxShadow: [
       BoxShadow(
@@ -30,12 +30,19 @@ class AppDecorations {
     ),
     boxShadow: [
       BoxShadow(
-        color: AppColors.deepSapphireBlue.withValues(
+        color: AppColors.primaryContainer.withValues(
           alpha: 0.2,
         ),
         blurRadius: 30,
         spreadRadius: 5,
       ),
     ],
+  );
+  static const BoxDecoration backgroundDecoration = BoxDecoration(
+    gradient: LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: [AppColors.backgroundStart, AppColors.backgroundEnd],
+    ),
   );
 }

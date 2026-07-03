@@ -27,7 +27,7 @@ class SplashProgressBar extends StatelessWidget {
                 minHeight: 4,
                 backgroundColor: Colors.white.withValues(alpha: 0.2),
                 valueColor: const AlwaysStoppedAnimation(
-                  AppColors.goldAccent,
+                  AppColors.secondaryContainer,
                 ),
               ),
             );

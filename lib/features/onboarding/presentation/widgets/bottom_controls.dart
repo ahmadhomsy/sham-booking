@@ -30,8 +30,8 @@ class BottomControls extends StatelessWidget {
               height: 8.h,
               decoration: BoxDecoration(
                 color: currentPage == index
-                    ? AppColors.goldAccent
-                    : AppColors.softSand,
+                    ? AppColors.secondaryContainer
+                    : AppColors.backgroundStart,
                 borderRadius: BorderRadius.circular(8),
               ),
             ),
@@ -44,7 +44,7 @@ class BottomControls extends StatelessWidget {
               height: 56.h,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.goldAccent,
+                  backgroundColor: AppColors.secondaryContainer,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),

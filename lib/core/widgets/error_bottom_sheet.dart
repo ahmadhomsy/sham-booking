@@ -14,7 +14,7 @@ class ErrorBottomSheet extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: const BoxDecoration(
-        color: AppColors.softSand,
+        color: AppColors.backgroundStart,
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(25),
         ),
@@ -47,7 +47,7 @@ class ErrorBottomSheet extends StatelessWidget {
             width: double.infinity,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.goldAccent,
+                backgroundColor: AppColors.secondaryContainer,
                 padding: const EdgeInsets.symmetric(vertical: 14),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
