@@ -56,6 +56,7 @@
     },
     "bookings": {
       "title": "الحجوزات",
+      "no_bookings": "لا توجد حجوزات حتى الآن",
       "pending": "قيد الانتظار",
       "confirmed": "مؤكد",
       "cancelled": "ملغي",

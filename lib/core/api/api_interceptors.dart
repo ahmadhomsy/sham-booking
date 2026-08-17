@@ -40,28 +40,45 @@ class ApiInterceptors extends Interceptor {
         try {
           final response = await dio.post(
             '${EndPoints.baseUrl}${EndPoints.refreshToken}',
-            data: {'refreshToken': refreshToken},
+            data: {
+              'refresh_token': refreshToken,
+              'refreshToken': refreshToken,
+            },
           );
-          if (response.statusCode == 200) {
-            final newAccessToken = response.data['accessToken'] as String;
-            final newRefreshToken = response.data['refreshToken'] as String;
-            await secureStorage.write(
-              key: accessTokenKey,
-              value: newAccessToken,
-            );
+          if (response.statusCode == 200 || response.statusCode == 201) {
+            final dynamic rawData = response.data;
+            final Map<String, dynamic> dataMap = (rawData is Map<String, dynamic>)
+                ? ((rawData['data'] is Map<String, dynamic>)
+                    ? rawData['data'] as Map<String, dynamic>
+                    : rawData)
+                : <String, dynamic>{};
 
-            await secureStorage.write(
-              key: refreshTokenKey,
-              value: newRefreshToken,
-            );
+            final newAccessToken =
+                (dataMap['access_token'] ?? dataMap['accessToken'])?.toString();
+            final newRefreshToken =
+                (dataMap['refresh_token'] ?? dataMap['refreshToken'])?.toString();
 
-            err.requestOptions.headers['Authorization'] =
-                'Bearer $newAccessToken';
-            final retryResponse = await dio.fetch(err.requestOptions);
-            return handler.resolve(retryResponse);
+            if (newAccessToken != null && newAccessToken.isNotEmpty) {
+              await secureStorage.write(
+                key: accessTokenKey,
+                value: newAccessToken,
+              );
+
+              if (newRefreshToken != null && newRefreshToken.isNotEmpty) {
+                await secureStorage.write(
+                  key: refreshTokenKey,
+                  value: newRefreshToken,
+                );
+              }
+
+              err.requestOptions.headers['Authorization'] =
+                  'Bearer $newAccessToken';
+              final retryResponse = await dio.fetch(err.requestOptions);
+              return handler.resolve(retryResponse);
+            }
           }
         } catch (e) {
-          // Token refresh failed. Handle logout if necessary.
+          // Token refresh failed. Clear tokens.
           await secureStorage.delete(key: accessTokenKey);
           await secureStorage.delete(key: refreshTokenKey);
         }

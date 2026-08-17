@@ -56,6 +56,7 @@
     },
     "bookings": {
       "title": "Bookings",
+      "no_bookings": "No bookings found yet",
       "pending": "Pending",
       "confirmed": "Confirmed",
       "cancelled": "Cancelled",
