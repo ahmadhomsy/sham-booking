@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sham_booking/core/extension/sized_box_extension.dart';
 import 'package:sham_booking/core/theme/app_colors.dart';
 import 'package:sham_booking/core/theme/app_decorations.dart';
@@ -114,8 +115,13 @@ class MapHotelSummaryCard extends StatelessWidget {
               foregroundColor: AppColors.secondaryContainer,
               overlayColor: AppColors.goldAccent,
             ),
-            onPressed: () {
-              // context.pushNamed('hotelDetails', extra: hotel);
+            onPressed: () async {
+              await context.pushNamed(
+                'hotelDetails',
+                pathParameters: {
+                  'id': hotel.id.toString(),
+                },
+              );
             },
             icon: const Icon(Icons.arrow_forward_ios, size: 16),
           ),
