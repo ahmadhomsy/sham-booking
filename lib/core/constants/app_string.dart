@@ -9,3 +9,4 @@ const String refreshTokenKey = 'refreshToken';
 const String userKey = 'user_data';
 const String profileKey = 'profile_data';
 const String userId = 'user_id';
+const String isDarkModeKey = 'isDarkMode';
