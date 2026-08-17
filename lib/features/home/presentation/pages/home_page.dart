@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage>
         ),
       ],
       child: Scaffold(
-        backgroundColor: AppColors.backgroundStart,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         extendBody: true,
         body: Stack(
           children: [
@@ -162,26 +162,29 @@ class _HomePageState extends State<HomePage>
 
   Widget _buildAppBar(BuildContext context) {
     return AppBar(
-      backgroundColor: AppColors.topBarBackground,
+      backgroundColor: Theme.of(context).appBarTheme.backgroundColor ??
+          Theme.of(context).colorScheme.surface,
       elevation: 0,
       scrolledUnderElevation: 0,
       bottom: PreferredSize(
         preferredSize: const Size.fromHeight(1),
         child: Container(
-          color: AppColors.primaryContainer.withValues(alpha: 0.1),
+          color: Theme.of(context).colorScheme.outlineVariant.withValues(alpha: 0.2),
           height: 1,
         ),
       ),
-      title: const Text(
+      title: Text(
         'SHAM BOOK',
-        style: AppTextStyles.notoSerif20primaryContainerBold,
+        style: AppTextStyles.notoSerif20primaryContainerBold.copyWith(
+          color: Theme.of(context).colorScheme.onSurface,
+        ),
       ),
       centerTitle: true,
       actions: [
         IconButton(
-          icon: const Icon(
+          icon: Icon(
             Icons.notifications_outlined,
-            color: AppColors.primaryContainer,
+            color: Theme.of(context).colorScheme.onSurface,
           ),
           onPressed: () async {
             await showModalBottomSheet<void>(

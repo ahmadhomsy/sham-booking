@@ -45,7 +45,9 @@ class ExploreWidget extends StatelessWidget {
                 5.verticalSpace,
                 Text(
                   'home.explore.featured_gems'.tr(),
-                  style: AppTextStyles.normal32primaryContainerW600,
+                  style: AppTextStyles.normal32primaryContainerW600.copyWith(
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
                 ).animate().fade(duration: 500.ms).slideY(begin: 0.5, end: 0),
                 15.verticalSpace,
                 const FeaturedGemsList(),

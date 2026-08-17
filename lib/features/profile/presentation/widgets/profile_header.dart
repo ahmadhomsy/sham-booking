@@ -11,16 +11,25 @@ class ProfileHeader extends StatelessWidget {
   final String email;
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Column(
       children: [
         Text(
           name,
-          style: AppTextStyles.normal28primaryContainerW700,
+          style: AppTextStyles.normal28primaryContainerW700.copyWith(
+            color: Theme.of(context).colorScheme.onSurface,
+          ),
           textAlign: TextAlign.center,
         ),
         8.verticalSpace,
         Container(
-          decoration: AppDecorations.profileHeaderDecoration,
+          decoration: BoxDecoration(
+            color: isDark ? const Color(0xFF2B230A) : const Color(0xFFFBF4D8),
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(
+              color: const Color(0x33D4AF37),
+            ),
+          ),
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
           child: Row(
             mainAxisSize: MainAxisSize.min,

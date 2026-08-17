@@ -13,12 +13,15 @@ class CustomBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.topBarBackground,
+        color: Theme.of(context).colorScheme.surface,
         boxShadow: [
           BoxShadow(
-            color: AppColors.primaryContainer.withValues(alpha: 0.2),
+            color: isDark
+                ? Colors.black.withValues(alpha: 0.4)
+                : AppColors.primaryContainer.withValues(alpha: 0.2),
             blurRadius: 20,
             spreadRadius: 1,
             offset: const Offset(0, -4),
@@ -76,7 +79,7 @@ class _NavBarItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final color = isActive
         ? const Color(0xFFD4AF37)
-        : AppColors.primaryContainer.withValues(alpha: 0.6);
+        : Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6);
 
     return InkWell(
       onTap: onTap,
