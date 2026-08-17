@@ -31,18 +31,19 @@ class BookCard extends StatelessWidget {
         ? booking.room.type.images.first
         : booking.hotel.mainImg;
 
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return GestureDetector(
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: AppColors.surfaceContainerLowest,
+          color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: AppColors.outlineVariant.withValues(alpha: 0.5),
+            color: Theme.of(context).colorScheme.outlineVariant.withValues(alpha: 0.5),
           ),
           boxShadow: [
             BoxShadow(
-              color: AppColors.primary.withValues(alpha: 0.04),
+              color: isDark ? Colors.black.withValues(alpha: 0.3) : AppColors.primary.withValues(alpha: 0.04),
               blurRadius: 10,
               offset: const Offset(0, 4),
             ),
@@ -59,8 +60,8 @@ class BookCard extends StatelessWidget {
                   Expanded(
                     child: Text(
                       hotelName,
-                      style: const TextStyle(
-                        color: AppColors.primaryContainer,
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onSurface,
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                       ),
@@ -72,9 +73,9 @@ class BookCard extends StatelessWidget {
                 ],
               ),
             ),
-            const Divider(
+            Divider(
               height: 1,
-              color: AppColors.surfaceContainer,
+              color: Theme.of(context).colorScheme.outlineVariant,
             ),
             Padding(
               padding: const EdgeInsets.all(16),
@@ -91,7 +92,7 @@ class BookCard extends StatelessWidget {
                       errorBuilder: (context, error, stackTrace) => Container(
                         width: 80,
                         height: 80,
-                        color: AppColors.surfaceContainer,
+                        color: Theme.of(context).colorScheme.surface,
                         child: const Icon(
                           Icons.hotel,
                           color: AppColors.outline,
@@ -106,8 +107,8 @@ class BookCard extends StatelessWidget {
                       children: [
                         Text(
                           roomName,
-                          style: const TextStyle(
-                            color: AppColors.onSurface,
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.onSurface,
                             fontWeight: FontWeight.w600,
                             fontSize: 14,
                           ),
@@ -132,9 +133,9 @@ class BookCard extends StatelessWidget {
             ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              decoration: const BoxDecoration(
-                color: AppColors.topBarBackground,
-                borderRadius: BorderRadius.only(
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.surface,
+                borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(16),
                   bottomRight: Radius.circular(16),
                 ),
@@ -144,15 +145,15 @@ class BookCard extends StatelessWidget {
                 children: [
                   Text(
                     'home.bookings.total_price'.tr(),
-                    style: const TextStyle(
-                      color: AppColors.onSurfaceVariant,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
                       fontSize: 13,
                     ),
                   ),
                   Text(
                     '\$$totalPrice',
-                    style: const TextStyle(
-                      color: AppColors.primaryContainer,
+                    style: TextStyle(
+                      color: isDark ? AppColors.goldAccent : AppColors.primaryContainer,
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
                     ),

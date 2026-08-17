@@ -44,7 +44,7 @@ class RoomCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.surfaceContainerLow,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(8),
         boxShadow: const [
           BoxShadow(
@@ -73,7 +73,7 @@ class RoomCard extends StatelessWidget {
                       child: Text(
                         title,
                         style: AppTypography.h3.copyWith(
-                          color: AppColors.primaryContainer,
+                          color: Theme.of(context).colorScheme.onSurface,
                         ),
                       ),
                     ),
@@ -83,13 +83,13 @@ class RoomCard extends StatelessWidget {
                         Text(
                           price,
                           style: AppTypography.h3.copyWith(
-                            color: AppColors.primaryContainer,
+                            color: Theme.of(context).colorScheme.onSurface,
                           ),
                         ),
                         Text(
                           '/ night',
                           style: AppTypography.bodyMd.copyWith(
-                            color: AppColors.onSurfaceVariant,
+                            color: Theme.of(context).colorScheme.onSurfaceVariant,
                             fontSize: 14,
                           ),
                         ),
@@ -109,7 +109,7 @@ class RoomCard extends StatelessWidget {
                             vertical: 4,
                           ),
                           decoration: BoxDecoration(
-                            color: AppColors.backgroundEnd,
+                            color: Theme.of(context).colorScheme.surface,
                             borderRadius: BorderRadius.circular(4),
                           ),
                           child: Row(

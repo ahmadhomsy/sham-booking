@@ -14,7 +14,7 @@ class DialogChangeLanguage extends StatelessWidget {
     final currentLocale = context.locale;
 
     return Dialog(
-      backgroundColor: AppColors.surfaceContainerLowest,
+      backgroundColor: Theme.of(context).cardColor,
       surfaceTintColor: Colors.transparent,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
@@ -64,11 +64,11 @@ class DialogChangeLanguage extends StatelessWidget {
                     currentLocale: currentLocale,
                   ),
 
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Divider(
                       height: 1,
-                      color: AppColors.surfaceContainerLow,
+                      color: Theme.of(context).colorScheme.outlineVariant,
                     ),
                   ),
 
@@ -101,14 +101,14 @@ class DialogChangeLanguage extends StatelessWidget {
       ),
       child: RadioListTile<Locale>(
         value: value,
-        activeColor: AppColors.primary,
+        activeColor: AppColors.goldAccent,
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
 
         title: Text(
           title,
           style: TextStyle(
-            color: isSelected ? AppColors.primary : AppColors.onSurfaceVariant,
+            color: isSelected ? AppColors.goldAccent : Theme.of(context).colorScheme.onSurface,
             fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
             fontSize: 16,
           ),

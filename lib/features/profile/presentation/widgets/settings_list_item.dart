@@ -19,7 +19,12 @@ class SettingsListItem extends StatelessWidget {
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(horizontal: 16),
       leading: Icon(icon, color: Colors.grey, size: 22),
-      title: Text(label, style: AppTextStyles.normal14onSurfaceW400),
+      title: Text(
+        label,
+        style: AppTextStyles.normal14onSurfaceW400.copyWith(
+          color: Theme.of(context).colorScheme.onSurface,
+        ),
+      ),
       trailing: trailing,
       onTap: onTap,
     );
