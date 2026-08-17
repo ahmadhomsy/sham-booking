@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:sham_booking/features/booking/data/models/find_one_response.dart';
 import 'package:sham_booking/features/booking/data/models/update_booking_request.dart';
@@ -72,7 +73,7 @@ class _UpdateBookingDialogState extends State<UpdateBookingDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Update Booking Info'),
+      title: Text('booking.update_booking_info'.tr()),
       content: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -82,12 +83,12 @@ class _UpdateBookingDialogState extends State<UpdateBookingDialog> {
               // حقل اسم الضيف
               TextFormField(
                 controller: _nameController,
-                decoration: const InputDecoration(
-                  labelText: 'Guest Name',
-                  border: OutlineInputBorder(),
+                decoration: InputDecoration(
+                  labelText: 'booking.full_name'.tr(),
+                  border: const OutlineInputBorder(),
                 ),
                 validator: (value) =>
-                    value == null || value.isEmpty ? 'Required' : null,
+                    value == null || value.isEmpty ? 'booking.enter_name'.tr() : null,
               ),
               const SizedBox(height: 12),
 
@@ -95,12 +96,12 @@ class _UpdateBookingDialogState extends State<UpdateBookingDialog> {
               TextFormField(
                 controller: _phoneController,
                 keyboardType: TextInputType.phone,
-                decoration: const InputDecoration(
-                  labelText: 'Guest Phone',
-                  border: OutlineInputBorder(),
+                decoration: InputDecoration(
+                  labelText: 'booking.phone'.tr(),
+                  border: const OutlineInputBorder(),
                 ),
                 validator: (value) =>
-                    value == null || value.isEmpty ? 'Required' : null,
+                    value == null || value.isEmpty ? 'booking.enter_phone'.tr() : null,
               ),
               const SizedBox(height: 12),
 
@@ -110,13 +111,13 @@ class _UpdateBookingDialogState extends State<UpdateBookingDialog> {
                 readOnly:
                     true, // يمنع الكتابة اليدوية لضمان استخدام الـ DatePicker
                 onTap: () => _selectDate(_checkInController),
-                decoration: const InputDecoration(
-                  labelText: 'Check-in Date',
-                  border: OutlineInputBorder(),
-                  suffixIcon: Icon(Icons.calendar_today),
+                decoration: InputDecoration(
+                  labelText: 'booking.select_dates'.tr(),
+                  border: const OutlineInputBorder(),
+                  suffixIcon: const Icon(Icons.calendar_today),
                 ),
                 validator: (value) =>
-                    value == null || value.isEmpty ? 'Required' : null,
+                    value == null || value.isEmpty ? 'booking.please_select_dates'.tr() : null,
               ),
               const SizedBox(height: 12),
 
@@ -125,13 +126,13 @@ class _UpdateBookingDialogState extends State<UpdateBookingDialog> {
                 controller: _checkOutController,
                 readOnly: true,
                 onTap: () => _selectDate(_checkOutController),
-                decoration: const InputDecoration(
-                  labelText: 'Check-out Date',
-                  border: OutlineInputBorder(),
-                  suffixIcon: Icon(Icons.calendar_today),
+                decoration: InputDecoration(
+                  labelText: 'booking.select_dates'.tr(),
+                  border: const OutlineInputBorder(),
+                  suffixIcon: const Icon(Icons.calendar_today),
                 ),
                 validator: (value) =>
-                    value == null || value.isEmpty ? 'Required' : null,
+                    value == null || value.isEmpty ? 'booking.please_select_dates'.tr() : null,
               ),
               const SizedBox(height: 12),
 
@@ -139,9 +140,9 @@ class _UpdateBookingDialogState extends State<UpdateBookingDialog> {
               TextFormField(
                 controller: _notesController,
                 maxLines: 3,
-                decoration: const InputDecoration(
-                  labelText: 'Notes',
-                  border: OutlineInputBorder(),
+                decoration: InputDecoration(
+                  labelText: 'booking.additional_notes'.tr(),
+                  border: const OutlineInputBorder(),
                 ),
               ),
             ],
@@ -152,7 +153,7 @@ class _UpdateBookingDialogState extends State<UpdateBookingDialog> {
         TextButton(
           onPressed: () =>
               Navigator.pop(context), // العودة بدون حفظ (يرجع null)
-          child: const Text('Cancel'),
+          child: Text('booking.cancel'.tr()),
         ),
         ElevatedButton(
           onPressed: () {
@@ -171,7 +172,7 @@ class _UpdateBookingDialogState extends State<UpdateBookingDialog> {
               Navigator.pop(context, updateRequest);
             }
           },
-          child: const Text('Save Changes'),
+          child: Text('booking.save_changes'.tr()),
         ),
       ],
     );

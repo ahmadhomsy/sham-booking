@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -71,7 +72,7 @@ class StickyBottomBar extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Price per night',
+                'booking.price_per_night'.tr(),
                 style: AppTypography.labelSm.copyWith(
                   color: AppColors.onSurfaceVariant,
                 ),
@@ -83,7 +84,7 @@ class StickyBottomBar extends StatelessWidget {
                 ),
               ),
               Text(
-                'Taxes & fees included',
+                'booking.taxes_included'.tr(),
                 style: AppTypography.labelSm.copyWith(
                   color: AppColors.outline,
                   fontSize: 10,
@@ -103,7 +104,7 @@ class StickyBottomBar extends StatelessWidget {
               elevation: 8,
               textStyle: AppTypography.labelSm.copyWith(letterSpacing: 2.0),
             ),
-            child: const Text("BOOK NOW"),
+            child: Text("booking.book_now".tr()),
           ),
         ],
       ),

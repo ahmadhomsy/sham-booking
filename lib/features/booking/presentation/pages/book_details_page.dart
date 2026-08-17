@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sham_booking/core/theme/app_colors.dart';
@@ -33,9 +34,9 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
           backgroundColor: AppColors.topBarBackground,
           elevation: 0,
           centerTitle: true,
-          title: const Text(
-            'Booking Details',
-            style: TextStyle(
+          title: Text(
+            'booking.booking_details'.tr(),
+            style: const TextStyle(
               color: AppColors.primaryContainer,
               fontWeight: FontWeight.w700,
             ),
@@ -50,24 +51,24 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
             if (crudState.status == CrudBookingStatus.failure) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text(crudState.errorMessage ?? 'Operation failed'),
+                  content: Text(crudState.errorMessage ?? 'unknown_error'.tr()),
                   backgroundColor: Colors.red,
                 ),
               );
             } else if (crudState.status == CrudBookingStatus.deleteSuccess) {
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Booking deleted successfully')),
+                SnackBar(content: Text('booking.booking_deleted_success'.tr())),
               );
               Navigator.pop(context); // العودة للصفحة السابقة بعد الحذف
             } else if (crudState.status == CrudBookingStatus.cancelSuccess) {
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Booking cancelled successfully')),
+                SnackBar(content: Text('booking.booking_cancelled_success'.tr())),
               );
               // إعادة جلب التفاصيل لتحديث حالة الحجز في الواجهة لتصبح cancelled
               context.read<DetailsBookBloc>().add(FetchBookingDetailsEvent());
             } else if (crudState.status == CrudBookingStatus.updateSuccess) {
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Booking updated successfully')),
+                SnackBar(content: Text('booking.booking_updated_success'.tr())),
               );
               // إعادة جلب التفاصيل لتحديث البيانات
               context.read<DetailsBookBloc>().add(FetchBookingDetailsEvent());
@@ -178,7 +179,7 @@ class _BookingActionButtons extends StatelessWidget {
                                 );
                               }
                             },
-                      child: const Text('Update'),
+                      child: Text('booking.update'.tr()),
                     ),
                   ),
                   const SizedBox(width: 12),
@@ -193,9 +194,9 @@ class _BookingActionButtons extends StatelessWidget {
                           ? null
                           : () => _confirmAction(
                               context: context,
-                              title: 'Cancel Booking',
+                              title: 'booking.cancel_booking'.tr(),
                               content:
-                                  'Are you sure you want to cancel this booking?',
+                                  'booking.are_you_sure_cancel'.tr(),
                               onConfirm: () {
                                 // التأكد من أن الـ id ليس null قبل الإرسال
                                 if (booking.id != null) {
@@ -220,7 +221,7 @@ class _BookingActionButtons extends StatelessWidget {
                                 color: Colors.white,
                               ),
                             )
-                          : const Text('Cancel'),
+                          : Text('booking.cancel'.tr()),
                     ),
                   ),
                 ],
@@ -237,9 +238,9 @@ class _BookingActionButtons extends StatelessWidget {
                           ? null
                           : () => _confirmAction(
                               context: context,
-                              title: 'Delete Booking',
+                              title: 'booking.delete_record'.tr(),
                               content:
-                                  'Are you sure you want to delete this record? This action cannot be undone.',
+                                  'booking.are_you_sure_delete'.tr(),
                               onConfirm: () {
                                 context.read<CrudBookingBloc>().add(
                                   SubmitDeleteBookingEvent(booking.id!),
@@ -254,7 +255,7 @@ class _BookingActionButtons extends StatelessWidget {
                                 color: Colors.white,
                               ),
                             )
-                          : const Text('Delete Record'),
+                          : Text('booking.delete_record'.tr()),
                     ),
                   ),
                 ],
@@ -281,7 +282,7 @@ class _BookingActionButtons extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),
-            child: const Text('No, Back'),
+            child: Text('booking.no_back'.tr()),
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
@@ -289,9 +290,9 @@ class _BookingActionButtons extends StatelessWidget {
               Navigator.pop(ctx); // إغلاق الـ Dialog
               onConfirm(); // تنفيذ العملية
             },
-            child: const Text(
-              'Yes, Confirm',
-              style: TextStyle(color: Colors.white),
+            child: Text(
+              'booking.yes_confirm'.tr(),
+              style: const TextStyle(color: Colors.white),
             ),
           ),
         ],
