@@ -26,7 +26,9 @@ class SupportListItem extends StatelessWidget {
       title: Text(
         label,
         style: AppTextStyles.normal14onSurfaceW400.copyWith(
-          color: textColor,
+          color: (textColor == AppColors.onSurface || textColor == AppColors.primaryContainer)
+              ? Theme.of(context).colorScheme.onSurface
+              : textColor,
           fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
         ),
       ),

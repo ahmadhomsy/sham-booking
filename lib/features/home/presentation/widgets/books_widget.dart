@@ -51,7 +51,9 @@ class _BooksWidgetState extends State<BooksWidget> {
               children: [
                 Text(
                   'home.bookings.title'.tr(),
-                  style: AppTextStyles.normal32primaryContainerW600,
+                  style: AppTextStyles.normal32primaryContainerW600.copyWith(
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
                 ).animate().fade(duration: 500.ms).slideY(begin: 0.5, end: 0),
 
                 15.verticalSpace,

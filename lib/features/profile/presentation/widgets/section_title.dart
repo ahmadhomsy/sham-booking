@@ -14,6 +14,7 @@ class SectionTitle extends StatelessWidget {
         child: Text(
           title,
           style: AppTextStyles.normal16primaryW600.copyWith(
+            color: Theme.of(context).colorScheme.onSurface,
             height: 1,
             letterSpacing: 0.05 * 12,
           ),

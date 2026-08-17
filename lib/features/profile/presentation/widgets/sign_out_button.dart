@@ -18,7 +18,7 @@ class SignOutButton extends StatelessWidget {
 
           return TextButton(
             style: TextButton.styleFrom(
-              backgroundColor: AppColors.surfaceContainerLowest,
+              backgroundColor: Theme.of(context).cardColor,
               shape: const StadiumBorder(),
               padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
               overlayColor: AppColors.dangerRed.withValues(alpha: 0.15),
