@@ -50,7 +50,7 @@ class _BooksWidgetState extends State<BooksWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'bookings.title'.tr(),
+                  'home.bookings.title'.tr(),
                   style: AppTextStyles.normal32primaryContainerW600,
                 ).animate().fade(duration: 500.ms).slideY(begin: 0.5, end: 0),
 
@@ -76,7 +76,7 @@ class _BooksWidgetState extends State<BooksWidget> {
                           child: Padding(
                             padding: const EdgeInsets.all(24),
                             child: Text(
-                              state.errorMessage ?? 'bookings.error'.tr(),
+                              state.errorMessage ?? 'home.bookings.error'.tr(),
                               style: const TextStyle(
                                 color: AppColors.dangerRed,
                               ),
