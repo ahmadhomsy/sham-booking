@@ -1,9 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sham_booking/core/theme/app_colors.dart';
 import 'package:sham_booking/core/theme/app_shadow.dart';
 import 'package:sham_booking/core/theme/app_text_styles.dart';
+import 'package:sham_booking/core/theme/theme_cubit.dart';
 import 'package:sham_booking/core/widgets/error_bottom_sheet.dart';
 import 'package:sham_booking/features/profile/presentation/widgets/change_language.dart';
 import 'package:sham_booking/features/profile/presentation/widgets/section_title.dart';
@@ -21,7 +23,7 @@ class SettingsSection extends StatelessWidget {
         ),
         Container(
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Theme.of(context).cardColor,
             borderRadius: BorderRadius.circular(12),
             boxShadow: const [AppShadow.cardShadow],
           ),
@@ -72,49 +74,43 @@ class SettingsSection extends StatelessWidget {
                 ),
               ),
               const Divider(indent: 16, height: 1),
-              SettingsListItem(
-                icon: Icons.dark_mode,
-                label: 'home.profile.settings.dark_mode'.tr(),
-                trailing: Transform.scale(
-                  scale: 0.8,
-                  child: Switch(
-                    value: false,
-                    thumbColor: WidgetStateProperty.resolveWith((states) {
-                      if (states.contains(WidgetState.selected)) {
-                        return Colors.white;
-                      }
-                      return AppColors.outline;
-                    }),
-
-                    trackColor: WidgetStateProperty.resolveWith((states) {
-                      if (states.contains(WidgetState.selected)) {
-                        return AppColors.secondaryContainer;
-                      }
-                      return AppColors.surfaceContainerLow;
-                    }),
-
-                    trackOutlineColor: WidgetStateProperty.resolveWith((
-                      states,
-                    ) {
-                      if (states.contains(WidgetState.selected)) {
-                        return Colors.transparent;
-                      }
-                      return AppColors.outlineVariant;
-                    }),
-                    onChanged: (value) async {
-                      await showModalBottomSheet<void>(
-                        context: context,
-                        backgroundColor: Colors.transparent,
-                        builder: (_) => ErrorBottomSheet(
-                          onPressed: () async {
-                            Navigator.pop(context);
-                          },
-                          errorMessage: 'home.feature_not_available'.tr(),
-                        ),
-                      );
-                    },
-                  ),
-                ),
+              BlocBuilder<ThemeCubit, ThemeMode>(
+                builder: (context, themeMode) {
+                  final isDark = themeMode == ThemeMode.dark;
+                  return SettingsListItem(
+                    icon: isDark ? Icons.dark_mode : Icons.light_mode,
+                    label: 'home.profile.settings.dark_mode'.tr(),
+                    trailing: Transform.scale(
+                      scale: 0.8,
+                      child: Switch(
+                        value: isDark,
+                        thumbColor: WidgetStateProperty.resolveWith((states) {
+                          if (states.contains(WidgetState.selected)) {
+                            return Colors.white;
+                          }
+                          return AppColors.outline;
+                        }),
+                        trackColor: WidgetStateProperty.resolveWith((states) {
+                          if (states.contains(WidgetState.selected)) {
+                            return AppColors.secondaryContainer;
+                          }
+                          return AppColors.surfaceContainerLow;
+                        }),
+                        trackOutlineColor: WidgetStateProperty.resolveWith((
+                          states,
+                        ) {
+                          if (states.contains(WidgetState.selected)) {
+                            return Colors.transparent;
+                          }
+                          return AppColors.outlineVariant;
+                        }),
+                        onChanged: (value) {
+                          context.read<ThemeCubit>().toggleTheme(value);
+                        },
+                      ),
+                    ),
+                  );
+                },
               ),
               const Divider(indent: 16, height: 1),
               SettingsListItem(

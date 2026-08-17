@@ -18,7 +18,7 @@ class SupportSection extends StatelessWidget {
         ),
         Container(
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Theme.of(context).cardColor,
             borderRadius: BorderRadius.circular(12),
             boxShadow: const [AppShadow.cardShadow],
           ),

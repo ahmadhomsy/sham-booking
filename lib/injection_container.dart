@@ -10,6 +10,7 @@ import 'package:sham_booking/core/api/dio_consumer.dart';
 import 'package:sham_booking/core/helpers/bloc_obs.dart';
 import 'package:sham_booking/core/helpers/network_info.dart';
 import 'package:sham_booking/core/helpers/speech_service.dart';
+import 'package:sham_booking/core/theme/theme_cubit.dart';
 import 'package:sham_booking/features/auth/data/data_sources/local_auth_data_source.dart';
 import 'package:sham_booking/features/auth/data/data_sources/remote_auth_data_source.dart';
 import 'package:sham_booking/features/auth/data/repositories/auth_repository_impl.dart';
@@ -77,6 +78,8 @@ Future<void> init() async {
   }
 
   sl
+    // Theme Cubit
+    ..registerLazySingleton<ThemeCubit>(() => ThemeCubit())
     // Chat & Cubits
     ..registerFactory(
       () => ChatCubit(sendMessageUseCase: sl(), speechService: sl()),
