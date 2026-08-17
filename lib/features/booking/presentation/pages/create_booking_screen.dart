@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -32,7 +33,7 @@ class CreateBookingScreen extends StatelessWidget {
           backgroundColor: AppColors.primary,
           iconTheme: const IconThemeData(color: Colors.white),
           title: Text(
-            'إتمام الحجز',
+            'booking.complete_booking'.tr(),
             style: TextStyle(
               color: Colors.white,
               fontSize: 20.sp,
@@ -131,14 +132,14 @@ class _CreateBookingViewState extends State<_CreateBookingView> {
         if (state.status == BookingStatus.failure) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text(state.errorMessage ?? 'حدث خطأ غير متوقع'),
+              content: Text(state.errorMessage ?? 'unknown_error'.tr()),
               backgroundColor: AppColors.dangerRed,
             ),
           );
         } else if (state.status == BookingStatus.createSuccess) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('تم الحجز بنجاح!'),
+            SnackBar(
+              content: Text('booking.booking_success'.tr()),
               backgroundColor: Colors.green,
             ),
           );
@@ -152,7 +153,7 @@ class _CreateBookingViewState extends State<_CreateBookingView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              _buildSectionTitle('تفاصيل الحجز'),
+              _buildSectionTitle('booking.booking_details'.tr()),
               SizedBox(height: 16.h),
 
               // --- حقل اختيار التواريخ ---
@@ -182,7 +183,7 @@ class _CreateBookingViewState extends State<_CreateBookingView> {
                       Expanded(
                         child: Text(
                           _checkInDate == null || _checkOutDate == null
-                              ? 'حدد تاريخ الدخول والمغادرة'
+                              ? 'booking.select_dates'.tr()
                               : 'من: ${_formatDate(_checkInDate!)}\nإلى: ${_formatDate(_checkOutDate!)}',
                           style: TextStyle(
                             fontSize: 14.sp,
@@ -207,42 +208,42 @@ class _CreateBookingViewState extends State<_CreateBookingView> {
               ),
 
               SizedBox(height: 32.h),
-              _buildSectionTitle('بيانات الضيف'),
+              _buildSectionTitle('booking.guest_info'.tr()),
               SizedBox(height: 16.h),
               _buildTextField(
                 controller: _nameController,
-                label: 'الاسم الكامل',
+                label: 'booking.full_name'.tr(),
                 icon: Icons.person_outline,
                 validator: (value) => value == null || value.isEmpty
-                    ? 'الرجاء إدخال الاسم'
+                    ? 'booking.enter_name'.tr()
                     : null,
               ),
               SizedBox(height: 16.h),
               _buildTextField(
                 controller: _phoneController,
-                label: 'رقم الهاتف',
+                label: 'booking.phone'.tr(),
                 icon: Icons.phone_outlined,
                 keyboardType: TextInputType.phone,
                 validator: (value) => value == null || value.isEmpty
-                    ? 'الرجاء إدخال رقم الهاتف'
+                    ? 'booking.enter_phone'.tr()
                     : null,
               ),
               SizedBox(height: 16.h),
               _buildTextField(
                 controller: _notesController,
-                label: 'ملاحظات إضافية (اختياري)',
+                label: 'booking.additional_notes'.tr(),
                 icon: Icons.notes,
                 maxLines: 3,
               ),
               SizedBox(height: 32.h),
 
-              _buildSectionTitle('طريقة الدفع'),
+              _buildSectionTitle('booking.payment_method'.tr()),
               SizedBox(height: 16.h),
               Row(
                 children: [
                   Expanded(
                     child: _buildPaymentOption(
-                      title: 'الدفع عند الوصول',
+                      title: 'booking.pay_on_arrival'.tr(),
                       icon: Icons.money,
                       value: PaymentMethodType.cash,
                     ),
@@ -250,7 +251,7 @@ class _CreateBookingViewState extends State<_CreateBookingView> {
                   SizedBox(width: 12.w),
                   Expanded(
                     child: _buildPaymentOption(
-                      title: 'بطاقة ائتمانية',
+                      title: 'booking.credit_card'.tr(),
                       icon: Icons.credit_card,
                       value: PaymentMethodType.stripe,
                     ),
@@ -267,7 +268,7 @@ class _CreateBookingViewState extends State<_CreateBookingView> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'بيانات البطاقة',
+                              'booking.card_details'.tr(),
                               style: TextStyle(
                                 fontSize: 14.sp,
                                 color: AppColors.onSurfaceVariant,
@@ -324,7 +325,7 @@ class _CreateBookingViewState extends State<_CreateBookingView> {
                             backgroundColor: AppColors.secondaryFixed,
                           )
                         : Text(
-                            'تأكيد الحجز',
+                            'booking.confirm_booking'.tr(),
                             style: TextStyle(
                               fontSize: 18.sp,
                               fontWeight: FontWeight.bold,
@@ -462,8 +463,8 @@ class _CreateBookingViewState extends State<_CreateBookingView> {
     // 1. التحقق من اختيار التواريخ أولاً
     if (_checkInDate == null || _checkOutDate == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('الرجاء تحديد تاريخ الدخول والمغادرة'),
+        SnackBar(
+          content: Text('booking.please_select_dates'.tr()),
           backgroundColor: Colors.orange,
         ),
       );
@@ -476,8 +477,8 @@ class _CreateBookingViewState extends State<_CreateBookingView> {
       if (_selectedPaymentMethod == PaymentMethodType.stripe &&
           !_isCardComplete) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('الرجاء إكمال بيانات البطاقة البنكية بشكل صحيح'),
+          SnackBar(
+            content: Text('booking.please_complete_card'.tr()),
             backgroundColor: Colors.orange,
           ),
         );

@@ -76,7 +76,7 @@ class _BooksWidgetState extends State<BooksWidget> {
                           child: Padding(
                             padding: const EdgeInsets.all(24),
                             child: Text(
-                              state.errorMessage ?? 'home.bookings.error'.tr(),
+                              state.errorMessage ?? 'home.explore.something_went_wrong'.tr(),
                               style: const TextStyle(
                                 color: AppColors.dangerRed,
                               ),
@@ -92,7 +92,7 @@ class _BooksWidgetState extends State<BooksWidget> {
                             child: Padding(
                               padding: const EdgeInsets.all(40),
                               child: Text(
-                                'bookings.no_bookings'.tr(),
+                                'home.bookings.no_bookings'.tr(),
                                 style: const TextStyle(
                                   color: AppColors.outline,
                                 ),

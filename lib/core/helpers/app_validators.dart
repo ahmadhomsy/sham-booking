@@ -1,17 +1,19 @@
+import 'package:easy_localization/easy_localization.dart';
+
 class AppValidators {
   static String? validateFullName(String? value) {
     if (value == null || value.trim().isEmpty) {
-      return 'Full name is required';
+      return 'validation.full_name_required'.tr();
     }
     if (value.trim().length < 3) {
-      return 'Name is too short';
+      return 'validation.name_too_short'.tr();
     }
     return null;
   }
 
   static String? validateEmail(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Email is required';
+      return 'validation.email_required'.tr();
     }
 
     final emailRegex = RegExp(
@@ -19,7 +21,7 @@ class AppValidators {
     );
 
     if (!emailRegex.hasMatch(value)) {
-      return 'Invalid email';
+      return 'validation.invalid_email'.tr();
     }
 
     return null;
@@ -27,11 +29,11 @@ class AppValidators {
 
   static String? validatePassword(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Password is required';
+      return 'validation.password_required'.tr();
     }
 
     if (value.length < 8) {
-      return 'Password must be at least 8 characters';
+      return 'validation.password_too_short'.tr();
     }
 
     return null;
