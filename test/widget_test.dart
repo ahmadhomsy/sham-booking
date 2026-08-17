@@ -11,11 +11,22 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:sham_booking/app.dart';
 import 'package:sham_booking/core/error/failures.dart';
+import 'package:sham_booking/features/auth/data/models/get_profile_response.dart';
+import 'package:sham_booking/features/auth/data/models/get_profile_response_local.dart';
 import 'package:sham_booking/features/auth/data/models/sign_in_user_request_model.dart';
 import 'package:sham_booking/features/auth/data/models/sign_up_user_request_model.dart';
 import 'package:sham_booking/features/auth/data/models/user_info_request.dart';
 import 'package:sham_booking/features/auth/domain/repositories/auth_repositories.dart';
+import 'package:sham_booking/features/auth/domain/usecases/get_profile_use_case.dart';
+import 'package:sham_booking/features/auth/domain/usecases/logout_usecase.dart';
 import 'package:sham_booking/features/auth/domain/usecases/logged_in_usecase.dart';
+import 'package:sham_booking/features/auth/domain/usecases/update_profile_use_case.dart';
+import 'package:sham_booking/features/home/data/models/hotel_model.dart';
+import 'package:sham_booking/features/home/domain/repositories/hotel_repository.dart';
+import 'package:sham_booking/features/home/domain/usecases/get_all_hotel_use_case.dart';
+import 'package:sham_booking/features/home/domain/usecases/get_hotel_details_use_case.dart';
+import 'package:sham_booking/features/home/presentation/bloc/hotel_bloc.dart';
+import 'package:sham_booking/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:sham_booking/features/splash/presentation/cubit/splash_cubit.dart';
 import 'package:sham_booking/injection_container.dart';
 
@@ -26,45 +37,54 @@ class _FakeAuthRepository implements AuthRepositories {
   }
 
   @override
-  Future<Either<Failure, Unit>> getProfile() {
-    // TODO: implement getProfile
-    throw UnimplementedError();
+  Future<Either<Failure, GetProfileResponseLocal>> getProfile() async {
+    return Right(GetProfileResponseLocal(name: 'Tester', email: 't@t.com'));
   }
 
   @override
-  Future<Either<Failure, Unit>> logout(String token) {
-    // TODO: implement logout
-    throw UnimplementedError();
+  Future<Either<Failure, Unit>> logout() async {
+    return const Right(unit);
   }
 
   @override
-  Future<Either<Failure, Unit>> sendVerificationCode() {
-    // TODO: implement sendVerificationCode
-    throw UnimplementedError();
+  Future<Either<Failure, Unit>> sendVerificationCode() async {
+    return const Right(unit);
   }
 
   @override
-  Future<Either<Failure, String>> signInUser(SignInUserRequestModel request) {
-    // TODO: implement signInUser
-    throw UnimplementedError();
+  Future<Either<Failure, String>> signInUser(
+    SignInUserRequestModel request,
+  ) async {
+    return const Right('tester');
   }
 
   @override
-  Future<Either<Failure, Unit>> signUpUser(SignUpUserRequestModel request) {
-    // TODO: implement signUpUser
-    throw UnimplementedError();
+  Future<Either<Failure, Unit>> signUpUser(
+    SignUpUserRequestModel request,
+  ) async {
+    return const Right(unit);
   }
 
   @override
-  Future<Either<Failure, Unit>> updateProfile(UserInfoRequest userInfo) {
-    // TODO: implement updateProfile
-    throw UnimplementedError();
+  Future<Either<Failure, Unit>> updateProfile(UserInfoRequest userInfo) async {
+    return const Right(unit);
   }
 
   @override
-  Future<Either<Failure, String>> verifyVerificationCode(String code) {
-    // TODO: implement verifyVerificationCode
-    throw UnimplementedError();
+  Future<Either<Failure, String>> verifyVerificationCode(String code) async {
+    return const Right('tester');
+  }
+}
+
+class _FakeHotelRepository implements HotelRepository {
+  @override
+  Future<Either<Failure, List<HotelModel>>> getAllHotels() async {
+    return const Right(<HotelModel>[]);
+  }
+
+  @override
+  Future<Either<Failure, HotelModel>> getHotelDetails(int id) async {
+    return Left(UnexpectedFailure());
   }
 }
 
@@ -79,9 +99,39 @@ void main() {
     await GetStorage.init();
     await sl.reset();
     final useCase = LoggedInUseCase(_FakeAuthRepository());
-    sl.registerFactory<SplashCubit>(
-      () => SplashCubit(loggedInUseCase: useCase),
-    );
+    final hotelRepository = _FakeHotelRepository();
+    final authRepository = _FakeAuthRepository();
+    sl
+      ..registerFactory<SplashCubit>(
+        () => SplashCubit(loggedInUseCase: useCase),
+      )
+      ..registerLazySingleton<HotelRepository>(() => hotelRepository)
+      ..registerLazySingleton<GetAllHotelUseCase>(
+        () => GetAllHotelUseCase(sl()),
+      )
+      ..registerLazySingleton<GetHotelDetailsUseCase>(
+        () => GetHotelDetailsUseCase(sl()),
+      )
+      ..registerFactory<HotelBloc>(
+        () => HotelBloc(
+          getAllHotelUseCase: sl(),
+          getHotelDetailsUseCase: sl(),
+        ),
+      )
+      ..registerLazySingleton<AuthRepositories>(() => authRepository)
+      ..registerLazySingleton<GetProfileUseCase>(() => GetProfileUseCase(sl()))
+      ..registerLazySingleton<LogoutUseCase>(() => LogoutUseCase(sl()))
+      ..registerLazySingleton<UpdateProfileUseCase>(
+        () => UpdateProfileUseCase(sl()),
+      )
+      ..registerFactory<ProfileBloc>(
+        () => ProfileBloc(
+          getProfileUseCase: sl(),
+          logoutUseCase: sl(),
+          updateProfileUseCase: sl(),
+          createStripePaymentMethodUseCase: sl(),
+        ),
+      );
   });
 
   tearDownAll(() {

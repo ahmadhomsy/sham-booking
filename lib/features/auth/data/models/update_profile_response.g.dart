@@ -30,7 +30,7 @@ UpdateProfileData _$UpdateProfileDataFromJson(Map<String, dynamic> json) =>
       email: json['email'] as String?,
       hotel: json['hotel'] as String?,
       id: (json['id'] as num?)?.toInt(),
-      isVerified: json['is_verified'] as String?,
+      isVerified: json['is_verified'] as bool?,
       name: json['full_name'] as String?,
       nationality: json['nationality'] as String?,
       role: json['role'] as String?,

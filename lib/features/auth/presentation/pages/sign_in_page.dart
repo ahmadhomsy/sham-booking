@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:sham_booking/core/extension/sized_box_extension.dart';
 import 'package:sham_booking/core/theme/app_colors.dart';
@@ -34,7 +35,7 @@ class SignInPage extends StatelessWidget {
                     constraints: const BoxConstraints(maxWidth: 450),
                     padding: const EdgeInsets.all(32),
                     decoration: BoxDecoration(
-                      color: AppColors.surface.withValues(alpha: 0.8),
+                      color: AppColors.backgroundStart.withValues(alpha: 0.8),
                       borderRadius: BorderRadius.circular(24),
                       boxShadow: [
                         BoxShadow(
@@ -56,8 +57,8 @@ class SignInPage extends StatelessWidget {
                         const DividerAuth(),
                         24.verticalSpace,
                         const SignLink(
-                          title1: "Don't have an account? ",
-                          title2: 'Sign up',
+                          title1: 'auth.dont_have_account',
+                          title2: 'auth.sign_up',
                           addressPage: 'signUp',
                         ),
                       ],

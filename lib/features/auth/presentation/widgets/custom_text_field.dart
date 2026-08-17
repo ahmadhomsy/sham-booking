@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:sham_booking/core/extension/sized_box_extension.dart';
 import 'package:sham_booking/core/theme/app_colors.dart';
@@ -30,7 +31,7 @@ class CustomTextField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          label,
+          label.tr(),
           style: AppTextStyles.normal12onSurfaceVariantW600,
         ),
         8.verticalSpace,
@@ -59,7 +60,7 @@ class CustomTextField extends StatelessWidget {
                   )
                 : null,
             filled: true,
-            fillColor: AppColors.surface,
+            fillColor: AppColors.backgroundStart,
             contentPadding: const EdgeInsets.symmetric(vertical: 16),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),

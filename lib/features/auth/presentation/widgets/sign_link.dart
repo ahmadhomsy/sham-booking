@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sham_booking/core/theme/app_text_styles.dart';
@@ -19,7 +20,7 @@ class SignLink extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          title1,
+          title1.tr(),
           style: AppTextStyles.normal16onSurfaceVariant,
         ),
         GestureDetector(
@@ -27,7 +28,7 @@ class SignLink extends StatelessWidget {
             await context.push('/$addressPage');
           },
           child: Text(
-            title2,
+            title2.tr(),
             style: AppTextStyles.normal16primaryW700,
           ),
         ),

@@ -8,16 +8,9 @@ part of 'user_info_request.dart';
 
 UserInfoRequest _$UserInfoRequestFromJson(Map<String, dynamic> json) =>
     UserInfoRequest(
-      name: json['full_name'] as String?,
-      phone: json['phone'] as String?,
-      nationality: json['nationality'] as String?,
-      password: json['password'] as String?,
+      id: (json['id'] as num?)?.toInt(),
+      paymentMethodId: json['payment_method_id'] as String?,
     );
 
 Map<String, dynamic> _$UserInfoRequestToJson(UserInfoRequest instance) =>
-    <String, dynamic>{
-      'full_name': instance.name,
-      'phone': instance.phone,
-      'nationality': instance.nationality,
-      'password': instance.password,
-    };
+    <String, dynamic>{'payment_method_id': instance.paymentMethodId};

@@ -38,7 +38,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             ),
           );
         },
-        (role) => emit(state.copyWith(status: AuthStatus.success, role: role)),
+        (role) {
+          emit(state.copyWith(role: role, status: AuthStatus.successVerify));
+        },
       );
     });
     on<SubmitSignUpUserEvent>((event, emit) async {

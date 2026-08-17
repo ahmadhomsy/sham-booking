@@ -1,9 +1,12 @@
+import 'dart:convert';
+
 import 'package:dartz/dartz.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:sham_booking/core/constants/app_string.dart';
 import 'package:sham_booking/core/error/exceptions.dart';
 import 'package:sham_booking/core/helpers/storage_helper.dart';
 import 'package:sham_booking/features/auth/data/models/get_profile_response.dart';
+import 'package:sham_booking/features/auth/data/models/get_profile_response_local.dart';
 import 'package:sham_booking/features/auth/data/models/sign_in_response.dart';
 import 'package:sham_booking/features/auth/data/models/sign_up_response.dart';
 
@@ -16,6 +19,8 @@ abstract class LocalAuthDataSource {
   Future<Unit> logout();
   Future<String> getRole();
   Future<String> getEmail();
+  Future<GetProfileResponseLocal> getProfile();
+  Future<Unit> hasPaymentMethod();
 }
 
 class LocalAuthDataSourceImpl implements LocalAuthDataSource {
@@ -54,12 +59,10 @@ class LocalAuthDataSourceImpl implements LocalAuthDataSource {
       await secureStorage.write(key: refreshTokenKey, value: refreshToken);
     }
 
-    final safeUserData = signInResponse.userData?.copyWith(
-      accessToken: '',
-      refreshToken: '',
-    );
+    final safeUserData = signInResponse.userData;
 
-    await box.write(userKey, safeUserData?.toJson());
+    await box.write(userKey, safeUserData?.userInfo?.toJson());
+    await box.write(userId, safeUserData?.userInfo?.id);
 
     return unit;
   }
@@ -76,12 +79,10 @@ class LocalAuthDataSourceImpl implements LocalAuthDataSource {
       await secureStorage.write(key: refreshTokenKey, value: refreshToken);
     }
 
-    final safeUserData = signUpResponse.userData?.copyWith(
-      accessToken: '',
-      refreshToken: '',
-    );
+    final safeUserData = signUpResponse.userData;
 
     await box.write(userKey, safeUserData?.userInfo?.toJson());
+    await box.write(userId, safeUserData?.userInfo?.id);
 
     return unit;
   }
@@ -94,7 +95,8 @@ class LocalAuthDataSourceImpl implements LocalAuthDataSource {
 
   @override
   Future<Unit> saveProfile(GetProfileResponse getProfileResponse) async {
-    await box.write(profileKey, getProfileResponse.toJson());
+    final encodedData = jsonEncode(getProfileResponse.toJson());
+    await box.write(profileKey, encodedData);
     return unit;
   }
 
@@ -111,4 +113,61 @@ class LocalAuthDataSourceImpl implements LocalAuthDataSource {
 
     return Future.value((userData?['email'] ?? '') as String);
   }
+
+  @override
+  Future<GetProfileResponseLocal> getProfile() async {
+    final data = box.read<Map<String, dynamic>>(userKey);
+
+    if (data is! Map) {
+      return GetProfileResponseLocal();
+    }
+
+    return GetProfileResponseLocal.fromJson(
+      Map<String, dynamic>.from(data!),
+    );
+  }
+
+  @override
+  Future<Unit> hasPaymentMethod() async {
+    await box.write(hasPaymentMethodKey, true);
+    return unit;
+  }
+
+  // @override
+  // Future<GetProfileResponseLocal> getProfile() async {
+  //   final userData = _readUserData();
+  //
+  //   return GetProfileResponseLocal.fromJson(
+  //     userData,
+  //   );
+  // }
+  //
+  // Map<String, dynamic> _readUserData() {
+  //   final dynamic data = box.read<dynamic>(userKey);
+  //
+  //   if (data is Map) {
+  //     final map = Map<String, dynamic>.from(data);
+  //     final nestedUser = map['user'];
+  //
+  //     if (nestedUser is Map) {
+  //       return Map<String, dynamic>.from(nestedUser);
+  //     }
+  //
+  //     if (nestedUser != null) {
+  //       return Map<String, dynamic>.from(
+  //         jsonDecode(jsonEncode(nestedUser)) as Map,
+  //       );
+  //     }
+  //
+  //     return map;
+  //   }
+  //
+  //   if (data != null) {
+  //     return Map<String, dynamic>.from(
+  //       jsonDecode(jsonEncode(data)) as Map,
+  //     );
+  //   }
+  //
+  //   return <String, dynamic>{};
+  // }
 }

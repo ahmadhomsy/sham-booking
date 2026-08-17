@@ -36,6 +36,20 @@ dependencies:
   pretty_dio_logger: ^1.4.0
   retrofit: ^4.9.2
   flutter_secure_storage: ^10.3.1
+  google_fonts: ^8.1.0
+  cached_network_image: ^3.4.1
+  font_awesome_flutter: ^11.0.0
+  url_launcher: ^6.3.2
+  google_maps_flutter: ^2.18.0
+  google_generative_ai: ^0.4.7
+  speech_to_text: ^7.4.0
+  shimmer: ^3.0.0
+  blurrycontainer: ^2.1.0
+  share_plus: ^12.0.2
+  flutter_stripe: ^13.1.0
+  flutter_dotenv: ^6.0.1
+  youtube_player_flutter: ^10.0.1
+  intl: ^0.20.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -60,6 +74,7 @@ flutter:
     - assets/logos/
     - assets/lang/
     - assets/images/
+    - .env
 flavorizr:
   ide: "idea"
   app:

@@ -2,7 +2,7 @@ part of 'auth_bloc.dart';
 
 enum AuthStatus { initial, loading, success, failure, successVerify }
 
-class AuthState {
+class AuthState extends Equatable {
   AuthState({
     this.role,
     this.isPasswordObscure = true,
@@ -32,4 +32,13 @@ class AuthState {
       role: role ?? this.role,
     );
   }
+
+  @override
+  List<Object?> get props => [
+    isPasswordObscure,
+    isAgreeTerms,
+    status,
+    errorMessage,
+    role,
+  ];
 }

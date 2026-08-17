@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -63,7 +64,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 Navigator.of(context).pop();
               },
               errorMessage:
-                  state.errorMessage ?? 'Error occurred, please try again.',
+                  state.errorMessage ?? 'auth.error_occurred_try_again'.tr(),
             ),
           );
           return;
@@ -77,15 +78,15 @@ class _SignUpFormState extends State<SignUpForm> {
           child: Column(
             children: [
               CustomTextField(
-                label: 'Full Name',
-                hint: 'E.g., Layla K.',
+                label: 'auth.full_name',
+                hint: 'auth.full_name_hint'.tr(),
                 icon: Icons.person_outline,
                 controller: fullNameController,
                 validator: AppValidators.validateFullName,
               ),
               16.verticalSpace,
               CustomTextField(
-                label: 'Email Address',
+                label: 'auth.email_address',
                 hint: 'hello@example.com',
                 icon: Icons.mail_outline,
                 keyboardType: TextInputType.emailAddress,
@@ -94,7 +95,7 @@ class _SignUpFormState extends State<SignUpForm> {
               ),
               16.verticalSpace,
               CustomTextField(
-                label: 'Password',
+                label: 'auth.password',
                 hint: '••••••••',
                 icon: Icons.lock_outline,
                 isObscure: state.isPasswordObscure,
@@ -106,7 +107,7 @@ class _SignUpFormState extends State<SignUpForm> {
               ),
               16.verticalSpace,
               CustomTextField(
-                label: 'Phone',
+                label: 'auth.phone',
                 hint: '+963XXXXXXXXX',
                 icon: Icons.phone,
                 controller: phoneController,
@@ -114,8 +115,8 @@ class _SignUpFormState extends State<SignUpForm> {
               ),
               16.verticalSpace,
               CustomTextField(
-                label: 'Nationality',
-                hint: 'Syrian',
+                label: 'auth.nationality',
+                hint: 'auth.nationality_hint'.tr(),
                 icon: Icons.flag,
                 controller: nationalityController,
               ),
@@ -160,19 +161,19 @@ class _SignUpFormState extends State<SignUpForm> {
                         },
                   child: state.status == AuthStatus.loading
                       ? const CircularProgressIndicator(color: Colors.white)
-                      : const Row(
+                      : Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              'CREATE ACCOUNT',
-                              style: TextStyle(
+                              'auth.create_account_button'.tr(),
+                              style: const TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w600,
                                 letterSpacing: 1.2,
                               ),
                             ),
-                            SizedBox(width: 8),
-                            Icon(Icons.arrow_forward, size: 20),
+                            const SizedBox(width: 8),
+                            const Icon(Icons.arrow_forward, size: 20),
                           ],
                         ),
                 ),

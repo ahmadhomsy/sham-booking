@@ -71,7 +71,7 @@ class RemoteAuthDataSourceImpl implements RemoteAuthDataSource {
   @override
   Future<UpdateProfileResponse> updateProfile(UserInfoRequest request) async {
     final response = await apiConsumer.patch(
-      EndPoints.updateProfile,
+      EndPoints.updateProfileWithId(request.id!),
       data: request.toJson(),
     );
     return UpdateProfileResponse.fromJson(response as Map<String, dynamic>);

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:sham_booking/core/extension/sized_box_extension.dart';
 import 'package:sham_booking/core/theme/app_text_styles.dart';
@@ -13,13 +14,13 @@ class SignUpContent extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Create Account',
+        Text(
+          'auth.create_account'.tr(),
           style: AppTextStyles.normal28primaryBold,
         ),
         8.verticalSpace,
-        const Text(
-          'Join ShamBook to unlock exclusive reservations and personalized concierge services.',
+        Text(
+          'auth.sign_up_description'.tr(),
           style: AppTextStyles.normal14onSurfaceVariant,
         ),
         32.verticalSpace,
@@ -29,8 +30,8 @@ class SignUpContent extends StatelessWidget {
         const DividerAuth(),
         24.verticalSpace,
         const SignLink(
-          title1: 'Already have an account? ',
-          title2: 'Sign In',
+          title1: 'auth.already_have_account',
+          title2: 'auth.sign_in',
           addressPage: 'signIn',
         ),
       ],

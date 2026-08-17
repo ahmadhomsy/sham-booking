@@ -1,3 +1,143 @@
 {
-
+  "modern_levantine_luxury": "MODERN LEVANTINE LUXURY",
+  "initialization_error_message": "An error occurred during initialization.",
+  "unknown_error": "An unexpected error occurred.",
+  "offline_error": "No Internet connection.",
+  "onboarding": {
+    "discover_damascus": {
+      "title": "Discover the Magic of Damascus",
+      "description": "The heritage of history and the comfort of the present in one place. Book your stay at the finest historic hotels in Damascus."
+    },
+    "luxurious_damascene_experience": {
+      "title": "A Luxurious Damascene Experience",
+      "description": "A few simple steps stand between you and booking your room in the most beautiful heritage homes. Choose what suits your taste and enjoy a stay worthy of you."
+    },
+    "your_journey_starts_here": {
+      "title": "Your Journey Starts Here",
+      "description": "Get ready for an unforgettable hospitality experience in the City of Jasmine. We have taken care of every detail so you can enjoy every moment of your stay."
+    }
+  },
+  "auth": {
+    "dont_have_account": "Don't have an account?",
+    "sign_up": "Sign up",
+    "welcome_back": "Welcome back",
+    "sign_in_description": "Please enter your details to sign in.",
+    "email_address": "Email Address",
+    "password": "Password",
+    "sign_in_button": "SIGN IN",
+    "error_occurred_try_again": "Error occurred, please try again.",
+    "continue_with": "OR CONTINUE WITH",
+    "create_account": "Create Account",
+    "sign_up_description": "Join ShamBook to unlock exclusive reservations and personalized concierge services.",
+    "already_have_account": "Already have an account?",
+    "sign_in": "Sign In",
+    "seamless_hospitality": "Begin your journey into seamless,\ndignified hospitality.",
+    "full_name": "Full Name",
+    "full_name_hint": "E.g., Layla K.",
+    "phone": "Phone",
+    "nationality": "Nationality",
+    "nationality_hint": "Syrian",
+    "create_account_button": "CREATE ACCOUNT",
+    "email_verification": {
+      "title": "Verify your email",
+      "description": "We've sent a link to your inbox to secure your account.",
+      "verification_error": "Verification Error",
+      "resend_code": "Resend Code",
+      "back_to_sign_up": "Back to Sign Up"
+    }
+  },
+  "home": {
+    "feature_not_available": "This feature is not available yet.",
+    "navigation": {
+      "explore": "Explore",
+      "room": "Room",
+      "bookings": "Bookings",
+      "profile": "Profile"
+    },
+    "bookings": {
+      "title": "Bookings",
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "cancelled": "Cancelled",
+      "completed": "Completed",
+      "nights": "Nights",
+      "total_price": "Total Price"
+    },
+    "explore": {
+      "featured_gems": "Featured Gems",
+      "map_view": "MAP VIEW",
+      "discover_levantine_luxury": "Discover Levantine Luxury",
+      "find_perfect_sanctuary": "Find your perfect sanctuary in the heart of Syria.",
+      "where_would_you_like_to_stay": "Where would you like to stay?",
+      "something_went_wrong": "Something went wrong",
+      "no_hotels_found": "No hotels found",
+      "discount": "{}% OFF"
+    },
+    "profile": {
+      "unable_to_load": "Unable to load profile",
+      "default_name": "Name",
+      "default_email": "Email",
+      "settings": {
+        "title": "Settings",
+        "notifications": "Notifications",
+        "dark_mode": "Dark Mode",
+        "language": "Language"
+      },
+      "support": {
+        "title": "Support",
+        "help_center": "Help Center",
+        "contact_ai_concierge": "Contact AI Concierge"
+      },
+      "sign_out": "Sign Out",
+      "payment_method": {
+        "title": "Payment Method",
+        "subtitle": "Your default payment card",
+        "active": "Active",
+        "card": "CARD",
+        "secure_payment": "SECURE PAYMENT",
+        "update": "Update Payment Method",
+        "update_title": "Update Payment Method",
+        "update_subtitle": "Enter your new card details",
+        "card_information": "Card information",
+        "secure_payment_description": "Your payment information is securely processed by Stripe."
+      }
+    },
+    "rooms": {
+      "featured_rooms": "Featured Rooms"
+    }
+  },
+  "faq": {
+    "popular_questions": "Popular Questions",
+    "item_1": {
+      "question": "How do I upgrade my suite?",
+      "answer": "You can upgrade your suite by going to your bookings, selecting your current reservation, and tapping on \"Upgrade Room\". Subject to availability."
+    },
+    "item_2": {
+      "question": "What is the group booking policy?",
+      "answer": "For group bookings of 5 or more rooms, please contact our concierge service directly for special rates and arrangements."
+    },
+    "item_3": {
+      "question": "How to use ShamPoints?",
+      "answer": "You can redeem ShamPoints at checkout to get discounts on your stay, dining, or spa services within the hotel."
+    }
+  },
+  "still_need_help": {
+    "title": "Still need help?",
+    "description": "Our concierge team is available 24/7\nto assist you with any inquiries.",
+    "chat_with_ai": "Chat with AI Concierge",
+    "request_a_call": "Request a Call"
+  },
+  "help_center": {
+    "title": "Help Center",
+    "subtitle": "How can we assist you today?",
+    "quick_categories": "Quick Categories",
+    "categories": {
+      "bookings": "Bookings &\nReservations",
+      "payments": "Payments &\nRefund",
+      "loyalty": "Loyalty\n(ShamPoints)",
+      "account": "Account &\nSecurity",
+      "travel": "Travel\nGuidelines",
+      "concierge": "Concierge\nServices"
+    }
+  }
 }

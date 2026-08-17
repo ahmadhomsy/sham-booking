@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -33,7 +34,7 @@ class SplashContent extends StatelessWidget {
             ),
             8.verticalSpace,
             Text(
-              'MODERN LEVANTINE LUXURY',
+              'modern_levantine_luxury'.tr(),
               style: AppTextStyles.plusJakartaSans12whiteW600,
             ),
           ],

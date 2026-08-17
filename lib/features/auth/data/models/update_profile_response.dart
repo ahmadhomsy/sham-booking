@@ -54,7 +54,7 @@ class UpdateProfileData {
   @JsonKey(name: 'paypal_email')
   String? paypalEmail;
   @JsonKey(name: 'is_verified')
-  String? isVerified;
+  bool? isVerified;
   @JsonKey(name: 'verification_code')
   String? verificationCode;
   @JsonKey(name: 'send_verification_code_at')

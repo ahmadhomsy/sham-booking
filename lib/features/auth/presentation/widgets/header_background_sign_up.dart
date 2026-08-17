@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:sham_booking/core/theme/app_colors.dart';
 
@@ -45,7 +46,7 @@ class HeaderBackgroundSignUp extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Begin your journey into seamless,\ndignified hospitality.',
+                  'auth.seamless_hospitality'.tr(),
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.white.withValues(alpha: 0.9),

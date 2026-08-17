@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sham_booking/core/theme/app_colors.dart';
@@ -18,9 +19,9 @@ class BackToSignUp extends StatelessWidget {
           letterSpacing: 0.5,
         ),
       ),
-      child: const Text(
-        'Back to Sign Up',
-        style: TextStyle(decoration: TextDecoration.underline),
+      child: Text(
+        'auth.email_verification.back_to_sign_up'.tr(),
+        style: const TextStyle(decoration: TextDecoration.underline),
       ),
     );
   }

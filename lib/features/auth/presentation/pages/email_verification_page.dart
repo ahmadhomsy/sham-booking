@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pinput/pinput.dart';
 import 'package:sham_booking/core/extension/sized_box_extension.dart';
 import 'package:sham_booking/core/theme/app_colors.dart';
@@ -7,7 +9,6 @@ import 'package:sham_booking/core/theme/app_text_styles.dart';
 import 'package:sham_booking/core/widgets/error_bottom_sheet.dart';
 import 'package:sham_booking/features/auth/presentation/bloc/auth/auth_bloc.dart';
 import 'package:sham_booking/features/auth/presentation/widgets/Illustration.dart';
-import 'package:go_router/go_router.dart';
 import 'package:sham_booking/features/auth/presentation/widgets/ambient_backgrounds.dart';
 import 'package:sham_booking/features/auth/presentation/widgets/back_to_sign_up.dart';
 import 'package:sham_booking/features/auth/presentation/widgets/glass_email_card.dart';
@@ -30,7 +31,9 @@ class EmailVerificationPage extends StatelessWidget {
               onPressed: () async {
                 Navigator.pop(context);
               },
-              errorMessage: state.errorMessage ?? 'Verification Error',
+              errorMessage:
+                  state.errorMessage ??
+                  'auth.email_verification.verification_error'.tr(),
             ),
           );
           return;
@@ -59,14 +62,14 @@ class EmailVerificationPage extends StatelessWidget {
                       children: [
                         const Illustration(),
                         32.verticalSpace,
-                        const Text(
-                          'Verify your email',
+                        Text(
+                          'auth.email_verification.title'.tr(),
                           style: AppTextStyles.normal32primaryBold,
                           textAlign: TextAlign.center,
                         ),
                         12.verticalSpace,
                         Text(
-                          "We've sent a link to your inbox to secure your account.",
+                          'auth.email_verification.description'.tr(),
                           style: AppTextStyles.normal16onSurfaceVariant
                               .copyWith(
                                 height: 1.5,

@@ -11,7 +11,9 @@ class GlassEmailCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final email = box.read<String>(emailKey) ?? 'user.name@example.com';
+    final email =
+        box.read<Map<String, dynamic>>(userKey)?['email'] as String? ??
+        'user.name@example.com';
     return ClipRRect(
       borderRadius: BorderRadius.circular(16),
       child: BackdropFilter(

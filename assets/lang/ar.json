@@ -1,3 +1,143 @@
 {
-
+  "modern_levantine_luxury": "فخامة شامية عصرية",
+  "initialization_error_message": "حدث خطأ أثناء عملية التهيئة.",
+  "unknown_error": "حدث خطأ غير متوقع.",
+  "offline_error": "لا يوجد اتصال بالإنترنت.",
+  "onboarding": {
+    "discover_damascus": {
+      "title": "اكتشف سحر دمشق",
+      "description": "عراقة التاريخ وراحة الحاضر في مكان واحد. احجز إقامتك في أرقى فنادق الشام القديمة."
+    },
+    "luxurious_damascene_experience": {
+      "title": "تجربة دمشقية فاخرة",
+      "description": "خطوات بسيطة تفصلك عن حجز غرفتك في أجمل البيوت التراثية. اختر ما يناسب ذوقك واستمتع بإقامة تليق بك."
+    },
+    "your_journey_starts_here": {
+      "title": "رحلتك تبدأ من هنا",
+      "description": "استعد لتجربة ضيافة لا تُنسى في مدينة الياسمين. لقد اهتممنا بأدق التفاصيل لتستمتع بكل لحظة من إقامتك."
+    }
+  },
+  "auth": {
+    "dont_have_account": "ليس لديك حساب؟",
+    "sign_up": "إنشاء حساب",
+    "welcome_back": "مرحبًا بعودتك",
+    "sign_in_description": "يرجى إدخال بياناتك لتسجيل الدخول.",
+    "email_address": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "sign_in_button": "تسجيل الدخول",
+    "error_occurred_try_again": "حدث خطأ، يرجى المحاولة مرة أخرى.",
+    "continue_with": "أو المتابعة باستخدام",
+    "create_account": "إنشاء حساب",
+    "sign_up_description": "انضم إلى ShamBook للاستفادة من الحجوزات الحصرية وخدمات الكونسيرج المخصصة لك.",
+    "already_have_account": "لديك حساب بالفعل؟",
+    "sign_in": "تسجيل الدخول",
+    "seamless_hospitality": "ابدأ رحلتك نحو ضيافة سلسة،\nتليق بك.",
+    "full_name": "الاسم الكامل",
+    "full_name_hint": "مثال: ليلى ك.",
+    "phone": "رقم الهاتف",
+    "nationality": "الجنسية",
+    "nationality_hint": "سوري",
+    "create_account_button": "إنشاء حساب",
+    "email_verification": {
+      "title": "تحقق من بريدك الإلكتروني",
+      "description": "لقد أرسلنا رابطًا إلى بريدك الإلكتروني لتأمين حسابك.",
+      "verification_error": "خطأ في التحقق",
+      "resend_code": "إعادة إرسال الرمز",
+      "back_to_sign_up": "العودة إلى إنشاء الحساب"
+    }
+  },
+  "home": {
+    "feature_not_available": "هذه الميزة غير متاحة حاليًا.",
+    "navigation": {
+      "explore": "استكشف",
+      "room": "الغرف",
+      "bookings": "الحجوزات",
+      "profile": "الملف الشخصي"
+    },
+    "bookings": {
+      "title": "الحجوزات",
+      "pending": "قيد الانتظار",
+      "confirmed": "مؤكد",
+      "cancelled": "ملغي",
+      "completed": "مكتمل",
+      "nights": "ليالي",
+      "total_price": "السعر الإجمالي"
+    },
+    "explore": {
+      "featured_gems": "وجهات مميزة",
+      "map_view": "عرض الخريطة",
+      "discover_levantine_luxury": "اكتشف الفخامة الشامية",
+      "find_perfect_sanctuary": "اعثر على ملاذك المثالي في قلب سوريا.",
+      "where_would_you_like_to_stay": "أين تود الإقامة؟",
+      "something_went_wrong": "حدث خطأ ما",
+      "no_hotels_found": "لم يتم العثور على فنادق",
+      "discount": "خصم {}%"
+    },
+    "profile": {
+      "unable_to_load": "تعذر تحميل الملف الشخصي",
+      "default_name": "الاسم",
+      "default_email": "البريد الإلكتروني",
+      "settings": {
+        "title": "الإعدادات",
+        "notifications": "الإشعارات",
+        "dark_mode": "الوضع الداكن",
+        "language": "اللغة"
+      },
+      "support": {
+        "title": "الدعم",
+        "help_center": "مركز المساعدة",
+        "contact_ai_concierge": "تواصل مع المساعد الذكي"
+      },
+      "sign_out": "تسجيل الخروج",
+      "payment_method": {
+        "title": "طريقة الدفع",
+        "subtitle": "بطاقة الدفع الافتراضية",
+        "active": "نشطة",
+        "card": "بطاقة",
+        "secure_payment": "دفع آمن",
+        "update": "تحديث طريقة الدفع",
+        "update_title": "تحديث طريقة الدفع",
+        "update_subtitle": "أدخل بيانات بطاقتك الجديدة",
+        "card_information": "معلومات البطاقة",
+        "secure_payment_description": "تتم معالجة معلومات الدفع الخاصة بك بأمان عبر Stripe."
+      }
+    },
+    "rooms": {
+      "featured_rooms": " الغرف المميزة"
+    }
+  },
+  "faq": {
+    "popular_questions": "الأسئلة الشائعة",
+    "item_1": {
+      "question": "كيف يمكنني ترقية جناحي؟",
+      "answer": "يمكنك ترقية جنابك من خلال الانتقال إلى حجوزاتك، وتحديد حجزك الحالي، والضغط على \"ترقية الغرفة\". يخضع ذلك لتوفر الغرف."
+    },
+    "item_2": {
+      "question": "ما هي سياسة حجز المجموعات؟",
+      "answer": "بالنسبة لحجوزات المجموعات لـ 5 غرف أو أكثر، يرجى الاتصال بخدمة الكونسيرج مباشرة للحصول على أسعار وترتيبات خاصة."
+    },
+    "item_3": {
+      "question": "كيفية استخدام نقاط شام (ShamPoints)؟",
+      "answer": "يمكنك استبدال نقاط ShamPoints عند الدفع للحصول على خصومات على إقامتك، أو تناول الطعام، أو خدمات السبا داخل الفندق."
+    }
+  },
+  "still_need_help": {
+    "title": "هل لا زلت بحاجة للمساعدة؟",
+    "description": "فريق الكونسيرج لدينا متاح على مدار الساعة طوال أيام الأسبوع\nلمساعدتك في أي استفسارات.",
+    "chat_with_ai": "محادثة مع المساعد الذكي",
+    "request_a_call": "طلب مكالمة"
+  },
+  "help_center": {
+    "title": "مركز المساعدة",
+    "subtitle": "كيف يمكننا مساعدتك اليوم؟",
+    "quick_categories": "التصنيفات السريعة",
+    "categories": {
+      "bookings": "الحجوزات &\nوالحجز",
+      "payments": "المدفوعات &\nوالاسترداد",
+      "loyalty": "الولاء\n(نقاط شام)",
+      "account": "الحساب &\nالأمان",
+      "travel": "إرشادات\nالسفر",
+      "concierge": "خدمات\nالكونسيرج"
+    }
+  }
 }

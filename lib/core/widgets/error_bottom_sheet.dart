@@ -54,7 +54,7 @@ class ErrorBottomSheet extends StatelessWidget {
                 ),
               ),
               onPressed: onPressed,
-              child: const Text('Retry'),
+              child: const Text('Ok'),
             ),
           ),
         ],

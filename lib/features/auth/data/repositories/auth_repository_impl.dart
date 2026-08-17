@@ -4,6 +4,7 @@ import 'package:sham_booking/core/error/failures.dart';
 import 'package:sham_booking/core/helpers/network_info.dart';
 import 'package:sham_booking/features/auth/data/data_sources/local_auth_data_source.dart';
 import 'package:sham_booking/features/auth/data/data_sources/remote_auth_data_source.dart';
+import 'package:sham_booking/features/auth/data/models/get_profile_response_local.dart';
 import 'package:sham_booking/features/auth/data/models/sign_in_user_request_model.dart';
 import 'package:sham_booking/features/auth/data/models/sign_up_user_request_model.dart';
 import 'package:sham_booking/features/auth/data/models/user_info_request.dart';
@@ -104,12 +105,11 @@ class AuthRepositoryImpl implements AuthRepositories {
   }
 
   @override
-  Future<Either<Failure, Unit>> getProfile() {
+  Future<Either<Failure, GetProfileResponseLocal>> getProfile() {
     return _execute(
       action: () async {
-        final response = await remoteAuthDataSource.getProfile();
-        await localDataSource.saveProfile(response);
-        return unit;
+        final response = await localDataSource.getProfile();
+        return response;
       },
     );
   }
@@ -119,13 +119,14 @@ class AuthRepositoryImpl implements AuthRepositories {
     return _execute(
       action: () async {
         await remoteAuthDataSource.updateProfile(request);
+        await localDataSource.hasPaymentMethod();
         return unit;
       },
     );
   }
 
   @override
-  Future<Either<Failure, Unit>> logout(String token) {
+  Future<Either<Failure, Unit>> logout() {
     return _execute(
       action: () async {
         return localDataSource.logout();

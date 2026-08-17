@@ -5,7 +5,7 @@ import 'package:sham_booking/features/auth/domain/repositories/auth_repositories
 class LogoutUseCase {
   LogoutUseCase(this.repositories);
   final AuthRepositories repositories;
-  Future<Either<Failure, Unit>> call(String token) {
-    return repositories.logout(token);
+  Future<Either<Failure, Unit>> call() {
+    return repositories.logout();
   }
 }

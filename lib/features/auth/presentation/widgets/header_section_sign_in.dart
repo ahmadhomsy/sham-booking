@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:sham_booking/core/extension/sized_box_extension.dart';
 import 'package:sham_booking/core/theme/app_colors.dart';
@@ -31,13 +32,13 @@ class HeaderSectionSignIn extends StatelessWidget {
           ),
         ),
         16.verticalSpace,
-        const Text(
-          'Welcome back',
+        Text(
+          'auth.welcome_back'.tr(),
           style: AppTextStyles.normal32primaryW700,
         ),
         8.verticalSpace,
-        const Text(
-          'Please enter your details to sign in.',
+        Text(
+          'auth.sign_in_description'.tr(),
           style: AppTextStyles.normal16onSurfaceVariant,
         ),
       ],

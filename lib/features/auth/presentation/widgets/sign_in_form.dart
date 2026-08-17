@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -52,7 +53,7 @@ class _SignInFormState extends State<SignInForm> {
                 Navigator.pop(context);
               },
               errorMessage:
-                  state.errorMessage ?? 'Error occurred, please try again.',
+                  state.errorMessage ?? 'auth.error_occurred_try_again'.tr(),
             ),
           );
           return;
@@ -69,7 +70,7 @@ class _SignInFormState extends State<SignInForm> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomTextField(
-                label: 'Email Address',
+                label: 'auth.email_address',
                 hint: 'hello@example.com',
                 icon: Icons.mail_outline,
                 keyboardType: TextInputType.emailAddress,
@@ -78,7 +79,7 @@ class _SignInFormState extends State<SignInForm> {
               ),
               16.verticalSpace,
               CustomTextField(
-                label: 'Password',
+                label: 'auth.password',
                 hint: '••••••••',
                 icon: Icons.lock_outline,
                 isObscure: state.isPasswordObscure,
@@ -117,8 +118,8 @@ class _SignInFormState extends State<SignInForm> {
                         },
                   child: state.status == AuthStatus.loading
                       ? const CircularProgressIndicator(color: Colors.white)
-                      : const Text(
-                          'SIGN IN',
+                      : Text(
+                          'auth.sign_in_button'.tr(),
                           style: AppTextStyles.normal12W600,
                         ),
                 ),
