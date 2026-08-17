@@ -122,7 +122,7 @@ class BookCard extends StatelessWidget {
                         const SizedBox(height: 6),
                         _buildInfoRow(
                           Icons.nightlight_round_outlined,
-                          '$nights ${'bookings.nights'.tr()}',
+                          '$nights ${'home.bookings.nights'.tr()}',
                         ),
                       ],
                     ),
@@ -143,7 +143,7 @@ class BookCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'bookings.total_price'.tr(),
+                    'home.bookings.total_price'.tr(),
                     style: const TextStyle(
                       color: AppColors.onSurfaceVariant,
                       fontSize: 13,
@@ -187,7 +187,7 @@ class BookCard extends StatelessWidget {
   }
 
   Widget _buildStatusBadge(String status) {
-    final String text = 'bookings.${status.toLowerCase()}'.tr();
+    final String text = 'home.bookings.${status.toLowerCase()}'.tr();
 
     // التلوين بناءً على الحالة الواردة من السيرفر
     final (Color bgColor, Color textColor) = switch (status.toLowerCase()) {

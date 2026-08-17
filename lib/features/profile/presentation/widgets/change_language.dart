@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:restart_app/restart_app.dart';
 import 'package:sham_booking/core/constants/app_string.dart';
 import 'package:sham_booking/core/helpers/storage_helper.dart';
 import 'package:sham_booking/core/theme/app_colors.dart';
@@ -37,11 +38,21 @@ class DialogChangeLanguage extends StatelessWidget {
               groupValue: currentLocale,
               onChanged: (newLocale) async {
                 if (newLocale == null || newLocale == currentLocale) return;
+
                 final lang = newLocale.languageCode;
+
+                // حفظ اللغة
                 await box.write(enLangKey, lang);
+
+                // إغلاق Dialog
                 if (!context.mounted) return;
                 context.pop();
+
+                // تغيير اللغة
                 await context.setLocale(newLocale);
+
+                // إعادة تشغيل التطبيق
+                await Restart.restartApp();
               },
               child: Column(
                 mainAxisSize: MainAxisSize.min,
