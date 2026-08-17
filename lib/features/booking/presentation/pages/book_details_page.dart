@@ -225,39 +225,39 @@ class _BookingActionButtons extends StatelessWidget {
                   ),
                 ],
 
-                if (canDelete) ...[
-                  // زر الحذف
-                  Expanded(
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.red, // لون خطر للحذف
-                        foregroundColor: Colors.white,
-                      ),
-                      onPressed: isLoading
-                          ? null
-                          : () => _confirmAction(
-                              context: context,
-                              title: 'Delete Booking',
-                              content:
-                                  'Are you sure you want to delete this record? This action cannot be undone.',
-                              onConfirm: () {
-                                context.read<CrudBookingBloc>().add(
-                                  SubmitDeleteBookingEvent(booking.id!),
-                                );
-                              },
-                            ),
-                      child: isLoading
-                          ? const SizedBox(
-                              height: 20,
-                              width: 20,
-                              child: CircularProgressIndicator(
-                                color: Colors.white,
-                              ),
-                            )
-                          : const Text('Delete Record'),
-                    ),
-                  ),
-                ],
+                // if (canDelete) ...[
+                //   // زر الحذف
+                //   Expanded(
+                //     child: ElevatedButton(
+                //       style: ElevatedButton.styleFrom(
+                //         backgroundColor: Colors.red, // لون خطر للحذف
+                //         foregroundColor: Colors.white,
+                //       ),
+                //       onPressed: isLoading
+                //           ? null
+                //           : () => _confirmAction(
+                //               context: context,
+                //               title: 'Delete Booking',
+                //               content:
+                //                   'Are you sure you want to delete this record? This action cannot be undone.',
+                //               onConfirm: () {
+                //                 context.read<CrudBookingBloc>().add(
+                //                   SubmitDeleteBookingEvent(booking.id!),
+                //                 );
+                //               },
+                //             ),
+                //       child: isLoading
+                //           ? const SizedBox(
+                //               height: 20,
+                //               width: 20,
+                //               child: CircularProgressIndicator(
+                //                 color: Colors.white,
+                //               ),
+                //             )
+                //           : const Text('Delete Record'),
+                //     ),
+                //   ),
+                // ],
               ],
             ),
           ),
