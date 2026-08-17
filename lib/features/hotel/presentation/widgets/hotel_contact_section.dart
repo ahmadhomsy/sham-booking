@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sham_booking/core/helpers/launcher_service.dart';
@@ -73,7 +74,7 @@ class HotelContactSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Contact & Information',
+          'hotel_details.contact_information'.tr(),
           style: GoogleFonts.notoSerif(
             fontSize: 24,
             fontWeight: FontWeight.w600,

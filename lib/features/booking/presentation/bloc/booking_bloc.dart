@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:sham_booking/core/constants/app_string.dart';
@@ -21,7 +22,11 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
     required this.createBookingUseCase,
     required this.createStripePaymentMethodUseCase,
     required this.updateUserUseCase,
-  }) : super(const BookingState()) {
+  }) : super(
+         BookingState(
+           hasPaymentMethod: box.read<bool>(hasPaymentMethodKey) ?? false,
+         ),
+       ) {
     on<SubmitCreateBookingEvent>(_onCreateBookingSubmitted);
     on<SubmitUpdateUserEvent>(_onUpdateUserSubmitted);
   }
@@ -36,26 +41,24 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
   ) async {
     emit(state.copyWith(status: BookingStatus.loading));
     try {
-      // 1. التحقق من طريقة الدفع (افترضنا أنك تمرر بويلين أو تفحص الـ request)
-      // يمكنك تعديل الشرط بناءً على تصميم الموديل لديك، مثلاً: event.request.paymentType == 'stripe'
-      final isStripePayment =
-          event.isStripe; // سنضيفه للإيفنت أو نفحصه من الريكويست
+      final isStripePayment = event.isStripe;
 
-      if (isStripePayment) {
-        // --- مسار سترايب ---
+      // 1. يتم إنشاء PaymentMethod وتحديث بيانات المستخدم فقط إذا:
+      // - طريقة الدفع هي Stripe
+      // - وَ المستخدم ليس لديه بطاقة محفوظة مسبقاً (!state.hasPaymentMethod)
+      if (isStripePayment && !state.hasPaymentMethod) {
         // أ) جلب الـ Payment Method ID من سترايب
         final paymentMethodId = await createStripePaymentMethodUseCase();
         final id = box.read<int>(userId);
-        // ب) تحديث بيانات المستخدم لحفظ الـ paymentMethodId عنده
-        // (تأكد من شكل الـ Request الذي تقبله updateUserUseCase لديك)
+
+        // ب) تحديث بيانات المستخدم لحفظ الـ paymentMethodId
         final userUpdateResult = await updateUserUseCase(
           UserInfoRequest(
             paymentMethodId: paymentMethodId,
             id: id,
-          ), // مثال
+          ),
         );
 
-        // التحقق من نجاح تحديث المستخدم قبل متابعة الحجز
         var updateFailed = false;
         String? errorMessage;
 
@@ -64,7 +67,10 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
             updateFailed = true;
             errorMessage = _mapFailureToMessage(failure);
           },
-          (_) {},
+          (_) {
+            // جـ) حفظ القيمة محلياً فور النجاح
+            box.write(hasPaymentMethodKey, true);
+          },
         );
 
         if (updateFailed) {
@@ -74,12 +80,14 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
               errorMessage: errorMessage,
             ),
           );
-          return; // إيقاف العملية إذا فشل تحديث المستخدم
+          return; // إيقاف العملية عند فشل تحديث المستخدم
         }
+
+        // د) تحديث الـ State لتصبح البطاقة محفوظة في الجلسة الحالية
+        emit(state.copyWith(hasPaymentMethod: true));
       }
 
-      // 2. مسار مشترك (سواء كاش أو سترايب بعد نجاح مراحله): إنشاء الحجز
-      // (ملاحظة: إذا كان الريكويست يحتاج إرسال الـ paymentMethodId معه للسيرفر، تأكد من وضعه في الـ request قبل إرساله)
+      // 2. إنشاء الحجز (يُنفّذ مباشرة إذا كانت البطاقة محفوظة مسبقاً أو إذا كان الدفع نقداً)
       final failureOrUnit = await createBookingUseCase(event.request);
 
       failureOrUnit.fold(
@@ -92,23 +100,26 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
         (_) => emit(state.copyWith(status: BookingStatus.createSuccess)),
       );
     } on StripeException catch (error) {
+      print('Stripe error: ${error.error.localizedMessage}');
+
       emit(
         state.copyWith(
           status: BookingStatus.failure,
-          errorMessage: error.error.localizedMessage ?? 'Stripe error',
+          errorMessage: 'booking.payment_failed'.tr(),
         ),
       );
-    } catch (_) {
+    } catch (e) {
+      print('Booking error: $e');
+
       emit(
         state.copyWith(
           status: BookingStatus.failure,
-          errorMessage: unknownError,
+          errorMessage: 'booking.unknown_booking_error'.tr(),
         ),
       );
     }
   }
 
-  // بقية الدوال كما هي...
   Future<void> _onUpdateUserSubmitted(
     SubmitUpdateUserEvent event,
     Emitter<BookingState> emit,
@@ -127,12 +138,14 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
   }
 
   String _mapFailureToMessage(Failure failure) {
-    if (failure is ServerFailure) {
-      return failure.message;
-    } else if (failure is OfflineFailure) {
-      return offlineError;
-    } else {
-      return unknownError;
+    if (failure is OfflineFailure) {
+      return 'booking.network_error'.tr();
     }
+
+    if (failure is ServerFailure) {
+      return 'booking.server_error'.tr();
+    }
+
+    return 'booking.unknown_booking_error'.tr();
   }
 }

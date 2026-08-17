@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:sham_booking/core/theme/app_colors.dart';
 import 'package:sham_booking/core/theme/app_text_styles.dart';
@@ -20,7 +21,7 @@ class RoomFeaturesGrid extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Room Features',
+          'room_details.room_features'.tr(),
           style: AppTextStyles.normal28primaryBold,
         ),
         const SizedBox(height: 20),
@@ -28,7 +29,7 @@ class RoomFeaturesGrid extends StatelessWidget {
           crossAxisCount: 3,
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          mainAxisExtent: 100,
+          mainAxisExtent: 120,
           crossAxisSpacing: 12,
           mainAxisSpacing: 12,
           children: features

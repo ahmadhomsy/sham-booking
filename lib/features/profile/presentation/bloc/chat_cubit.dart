@@ -77,12 +77,21 @@ class ChatCubit extends Cubit<ChatState> {
         ),
       );
     } catch (e) {
-      final errorMsg = ChatMessage(text: e.toString(), isUser: false);
+      // الخطأ الحقيقي للمطور فقط
+      print('Chat error: $e');
+
+      const userFriendlyMessage = 'عذراً، لم أتمكن من معالجة رسالتك حالياً. ';
+
+      final errorMsg = ChatMessage(
+        text: userFriendlyMessage,
+        isUser: false,
+      );
+
       emit(
         state.copyWith(
           messages: List.of(state.messages)..add(errorMsg),
           isLoading: false,
-          errorMessage: e.toString(),
+          errorMessage: userFriendlyMessage,
         ),
       );
     }

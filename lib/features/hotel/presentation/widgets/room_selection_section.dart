@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sham_booking/core/theme/app_colors.dart';
@@ -61,7 +62,7 @@ class RoomSelectionSection extends StatelessWidget {
             ),
             const SizedBox(width: 8),
             Text(
-              'Select Your Room',
+              'hotel_details.select_your_room'.tr(),
               style: AppTypography.h3.copyWith(
                 color: AppColors.primaryContainer,
               ),
@@ -74,7 +75,7 @@ class RoomSelectionSection extends StatelessWidget {
           child: Row(
             children: [
               _buildFilterPill(
-                'All Rooms',
+                'hotel_details.all_rooms'.tr(),
                 isSelected: selectedFilter == HotelDetailsRoomsFilter.all,
                 onTap: () => onFilterChanged(HotelDetailsRoomsFilter.all),
               ),

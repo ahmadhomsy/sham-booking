@@ -177,26 +177,26 @@ class _HomePageState extends State<HomePage>
         style: AppTextStyles.notoSerif20primaryContainerBold,
       ),
       centerTitle: true,
-      actions: [
-        IconButton(
-          icon: const Icon(
-            Icons.notifications_outlined,
-            color: AppColors.primaryContainer,
-          ),
-          onPressed: () async {
-            await showModalBottomSheet<void>(
-              context: context,
-              backgroundColor: Colors.transparent,
-              builder: (_) => ErrorBottomSheet(
-                onPressed: () async {
-                  Navigator.pop(context);
-                },
-                errorMessage: 'home.feature_not_available'.tr(),
-              ),
-            );
-          },
-        ),
-      ],
+      // actions: [
+      //   IconButton(
+      //     icon: const Icon(
+      //       Icons.notifications_outlined,
+      //       color: AppColors.primaryContainer,
+      //     ),
+      //     onPressed: () async {
+      //       await showModalBottomSheet<void>(
+      //         context: context,
+      //         backgroundColor: Colors.transparent,
+      //         builder: (_) => ErrorBottomSheet(
+      //           onPressed: () async {
+      //             Navigator.pop(context);
+      //           },
+      //           errorMessage: 'home.feature_not_available'.tr(),
+      //         ),
+      //       );
+      //     },
+      //   ),
+      // ],
     );
   }
 }

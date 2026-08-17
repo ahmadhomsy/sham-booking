@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sham_booking/core/theme/app_colors.dart';
@@ -21,7 +22,7 @@ class HotelGallerySection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Hotel Gallery',
+          'hotel_details.hotel_gallery'.tr(),
           style: GoogleFonts.notoSerif(
             fontSize: 24,
             fontWeight: FontWeight.w600,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sham_booking/core/theme/app_colors.dart';
 import 'package:sham_booking/core/theme/app_text_styles.dart';
 
 class SupportListItem extends StatelessWidget {
@@ -26,7 +27,9 @@ class SupportListItem extends StatelessWidget {
       title: Text(
         label,
         style: AppTextStyles.normal14onSurfaceW400.copyWith(
-          color: (textColor == AppColors.onSurface || textColor == AppColors.primaryContainer)
+          color:
+              (textColor == AppColors.onSurface ||
+                  textColor == AppColors.primaryContainer)
               ? Theme.of(context).colorScheme.onSurface
               : textColor,
           fontWeight: isBold ? FontWeight.bold : FontWeight.normal,

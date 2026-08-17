@@ -224,9 +224,7 @@ class _CreateBookingViewState extends State<_CreateBookingView> {
                 label: 'booking.phone'.tr(),
                 icon: Icons.phone_outlined,
                 keyboardType: TextInputType.phone,
-                validator: (value) => value == null || value.isEmpty
-                    ? 'booking.enter_phone'.tr()
-                    : null,
+                validator: _validatePhone,
               ),
               SizedBox(height: 16.h),
               _buildTextField(
@@ -258,53 +256,104 @@ class _CreateBookingViewState extends State<_CreateBookingView> {
                   ),
                 ],
               ),
-              AnimatedSize(
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.easeInOut,
-                child: _selectedPaymentMethod == PaymentMethodType.stripe
-                    ? Padding(
-                        padding: EdgeInsets.only(top: 20.h),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'booking.card_details'.tr(),
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                color: AppColors.onSurfaceVariant,
+              BlocBuilder<BookingBloc, BookingState>(
+                builder: (context, state) {
+                  Widget childWidget = const SizedBox.shrink();
+
+                  // 1. إذا اختار سترايب وليس لديه بطاقة محفوظة -> عرض حقل إدخال البطاقة
+                  if (_selectedPaymentMethod == PaymentMethodType.stripe &&
+                      !state.hasPaymentMethod) {
+                    childWidget = Padding(
+                      padding: EdgeInsets.only(top: 20.h),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'booking.card_details'.tr(),
+                            style: TextStyle(
+                              fontSize: 14.sp,
+                              color: AppColors.onSurfaceVariant,
+                            ),
+                          ),
+                          SizedBox(height: 8.h),
+                          Container(
+                            padding: EdgeInsets.all(8.w),
+                            decoration: BoxDecoration(
+                              color: AppColors.surfaceContainerLowest,
+                              borderRadius: BorderRadius.circular(12.r),
+                              border: Border.all(
+                                color: AppColors.outlineVariant,
                               ),
                             ),
-                            SizedBox(height: 8.h),
-                            Container(
-                              padding: EdgeInsets.all(8.w),
-                              decoration: BoxDecoration(
-                                color: AppColors.surfaceContainerLowest,
-                                borderRadius: BorderRadius.circular(12.r),
-                                border: Border.all(
-                                  color: AppColors.outlineVariant,
+                            child: CardField(
+                              onCardChanged: (card) {
+                                setState(() {
+                                  _isCardComplete = card?.complete ?? false;
+                                });
+                              },
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintStyle: TextStyle(
+                                  color: AppColors.outline,
+                                  fontSize: 14.sp,
                                 ),
                               ),
-                              child: CardField(
-                                onCardChanged: (card) {
-                                  setState(() {
-                                    _isCardComplete = card?.complete ?? false;
-                                  });
-                                },
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintStyle: TextStyle(
-                                    color: AppColors.outline,
-                                    fontSize: 14.sp,
-                                  ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  }
+                  // 2. إذا اختار سترايب ولديه بطاقة محفوظة مسبقاً -> عرض رسالة تأكيد
+                  else if (_selectedPaymentMethod == PaymentMethodType.stripe &&
+                      state.hasPaymentMethod) {
+                    childWidget = Padding(
+                      padding: EdgeInsets.only(top: 20.h),
+                      child: Container(
+                        padding: EdgeInsets.all(12.w),
+                        decoration: BoxDecoration(
+                          color: AppColors.primaryFixedDim, // لون خلفية خفيف
+                          borderRadius: BorderRadius.circular(12.r),
+                          border: Border.all(
+                            color: AppColors.primary.withOpacity(0.5),
+                          ),
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(Icons.check_circle, color: AppColors.primary),
+                            SizedBox(width: 8.w),
+                            Expanded(
+                              child: Text(
+                                // أضف هذا المفتاح في ملف الترجمة
+                                ('booking.saved_card_will_be_used'
+                                            .tr()
+                                            .isNotEmpty &&
+                                        'booking.saved_card_will_be_used'
+                                                .tr() !=
+                                            'booking.saved_card_will_be_used')
+                                    ? 'booking.saved_card_will_be_used'.tr()
+                                    : 'سيتم استخدام بطاقتك البنكية المحفوظة',
+                                style: TextStyle(
+                                  fontSize: 14.sp,
+                                  color: AppColors.primary,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),
                           ],
                         ),
-                      )
-                    : const SizedBox.shrink(),
-              ),
+                      ),
+                    );
+                  }
 
+                  // الحاوية المتحركة التي ستعرض الـ Widget المناسب
+                  return AnimatedSize(
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                    child: childWidget,
+                  );
+                },
+              ),
               SizedBox(height: 40.h),
               BlocBuilder<BookingBloc, BookingState>(
                 builder: (context, state) {
@@ -340,6 +389,36 @@ class _CreateBookingViewState extends State<_CreateBookingView> {
         ),
       ),
     );
+  }
+
+  String? _validatePhone(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return 'booking.enter_phone'.tr();
+    }
+
+    final phone = value.trim();
+
+    // يجب أن يبدأ برمز الدولة
+    if (!phone.startsWith('+')) {
+      return 'booking.phone_country_code_required'.tr();
+    }
+
+    // يسمح فقط بـ + والأرقام والمسافات والشرطات
+    final cleanedPhone = phone.replaceAll(RegExp(r'[\s\-()]'), '');
+
+    // بعد حذف التنسيق يجب أن يكون + ثم أرقام فقط
+    if (!RegExp(r'^\+[0-9]+$').hasMatch(cleanedPhone)) {
+      return 'booking.invalid_phone'.tr();
+    }
+
+    // رمز الدولة + الرقم يجب أن يكون بين 8 و 15 رقماً
+    final digitsOnly = cleanedPhone.substring(1);
+
+    if (digitsOnly.length < 8 || digitsOnly.length > 15) {
+      return 'booking.phone_invalid_length'.tr();
+    }
+
+    return null;
   }
 
   Widget _buildSectionTitle(String title) {
@@ -473,8 +552,13 @@ class _CreateBookingViewState extends State<_CreateBookingView> {
 
     // 2. التحقق من صحة الفورم (الاسم، الهاتف)
     if (_formKey.currentState!.validate()) {
-      // 3. التحقق من بيانات البطاقة البنكية إذا تم اختيارها
+      // 3. التحقق من حالة وجود بطاقة محفوظة من الـ Bloc
+      final bookingState = context.read<BookingBloc>().state;
+      final hasSavedCard = bookingState.hasPaymentMethod;
+
+      // يطلب إكمال بيانات البطاقة فقط إذا اختار Stripe ولم تكن لديه بطاقة محفوظة
       if (_selectedPaymentMethod == PaymentMethodType.stripe &&
+          !hasSavedCard &&
           !_isCardComplete) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -490,12 +574,8 @@ class _CreateBookingViewState extends State<_CreateBookingView> {
       final request = CreateBookingRequest(
         hotelId: widget.hotelId,
         roomId: widget.roomId,
-        checkIn: _formatDate(_checkInDate!), // تحويل التاريخ لنص
-        checkOut: _formatDate(
-          _checkOutDate!,
-        ),
-        // checkIn: "2026-04-08", // تحويل التاريخ لنص
-        // checkOut: "2026-04-09", // تحويل التاريخ لنص
+        checkIn: _formatDate(_checkInDate!),
+        checkOut: _formatDate(_checkOutDate!),
         guestName: _nameController.text.trim(),
         guestPhone: _phoneController.text.trim(),
         notes: _notesController.text.trim(),

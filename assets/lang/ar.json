@@ -150,6 +150,16 @@
     }
   },
   "booking": {
+    "invalid_phone": "يرجى إدخال رقم هاتف صحيح مع رمز الدولة، مثال: +963 9XXXXXXXX",
+    "phone_country_code_required": "يرجى إدخال رقم الهاتف مع رمز الدولة، مثال: +963 9XXXXXXXX",
+    "phone_invalid_length": "يرجى إدخال رقم هاتف صحيح بعدد أرقام مناسب.",
+    "booking_failed": "تعذر إتمام الحجز. يرجى المحاولة مرة أخرى.",
+    "payment_failed": "تعذر إتمام عملية الدفع. تحقق من بيانات البطاقة وحاول مرة أخرى.",
+    "payment_method_failed": "تعذر إنشاء طريقة الدفع. تحقق من بيانات البطاقة وحاول مرة أخرى.",
+    "update_payment_failed": "تعذر حفظ معلومات الدفع. يرجى المحاولة مرة أخرى.",
+    "network_error": "لا يوجد اتصال بالإنترنت. تحقق من اتصالك وحاول مرة أخرى.",
+    "server_error": "حدث خطأ في الخادم. يرجى المحاولة مرة أخرى لاحقاً.",
+    "unknown_booking_error": "حدث خطأ أثناء إنشاء الحجز. يرجى المحاولة مرة أخرى.",
     "complete_booking": "إتمام الحجز",
     "booking_details": "تفاصيل الحجز",
     "select_dates": "حدد تاريخ الدخول والمغادرة",
@@ -183,7 +193,8 @@
     "yes_confirm": "نعم، تأكيد",
     "no_back": "لا، عودة",
     "price_per_night": "السعر لليلة الواحدة",
-    "taxes_included": "الضرائب والرسوم مشمولة"
+    "taxes_included": "الضرائب والرسوم مشمولة",
+    "saved_card_will_be_used": "سيتم استخدام بطاقتك البنكية المحفوظة"
   },
   "validation": {
     "full_name_required": "الاسم الكامل مطلوب",
@@ -192,5 +203,39 @@
     "invalid_email": "صيغة البريد الإلكتروني غير صحيحة",
     "password_required": "كلمة المرور مطلوبة",
     "password_too_short": "يجب أن تكون كلمة المرور 8 أحرف على الأقل"
+  },
+  "hotel_details": {
+    "loading_hotel": "جارٍ تحميل الفندق...",
+    "loading_location": "جارٍ تحميل الموقع...",
+    "something_went_wrong": "حدث خطأ ما.",
+    "about_hotel": "عن الفندق",
+    "no_description": "لا يوجد وصف متاح.",
+    "location": "الموقع",
+    "rating": "التقييم",
+    "discount": "الخصم",
+    "damascus": "دمشق",
+    "ready_to_stay": "هل أنت مستعد للإقامة؟",
+    "choose_your_room": "اختر غرفتك",
+    "book_now": "احجز الآن",
+    "hotel_gallery": "معرض الفندق",
+    "contact_information": "التواصل والمعلومات",
+    "select_your_room": "اختر غرفتك",
+    "all_rooms": "جميع الغرف"
+  },
+  "room_details": {
+    "room_information_unavailable": "معلومات الغرفة غير متوفرة.",
+    "room_amenities": "مرافق الغرفة",
+    "room_gallery": "معرض الغرفة",
+    "per_night": "لليلة",
+    "available": "متاحة",
+    "about_this_room": "عن هذه الغرفة",
+    "room_description": "استمتع بالراحة والأناقة في {room_name}. توفر الغرفة رقم {room_number} إقامة مريحة مع مجموعة مختارة بعناية من المرافق وأجواء راقية.",
+    "your_hotel": "فندقك",
+    "upcoming_bookings": "الحجوزات القادمة",
+    "guest": "الضيف",
+    "to": "إلى",
+    "unable_to_load_room": "تعذر تحميل الغرفة",
+    "room": "غرفة",
+    "room_features": "مميزات الغرفة"
   }
 }

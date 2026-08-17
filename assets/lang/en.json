@@ -150,6 +150,16 @@
     }
   },
   "booking": {
+      "invalid_phone": "Please enter a valid phone number with the country code, for example: +963 9XXXXXXXX",
+      "phone_country_code_required": "Please enter your phone number with the country code, for example: +963 9XXXXXXXX",
+      "phone_invalid_length": "Please enter a valid phone number with the correct number of digits.",
+      "booking_failed": "We couldn't complete your booking. Please try again.",
+      "payment_failed": "Payment could not be completed. Please check your card details and try again.",
+      "payment_method_failed": "We couldn't create the payment method. Please check your card details and try again.",
+      "update_payment_failed": "We couldn't save your payment information. Please try again.",
+      "network_error": "No internet connection. Please check your connection and try again.",
+      "server_error": "Something went wrong on the server. Please try again later.",
+      "unknown_booking_error": "Something went wrong while creating your booking. Please try again.",
     "complete_booking": "Complete Booking",
     "booking_details": "Booking Details",
     "select_dates": "Select Check-in & Check-out dates",
@@ -183,7 +193,8 @@
     "yes_confirm": "Yes, Confirm",
     "no_back": "No, Back",
     "price_per_night": "Price per night",
-    "taxes_included": "Taxes & fees included"
+    "taxes_included": "Taxes & fees included",
+    "saved_card_will_be_used": "Your saved payment card will be used"
   },
   "validation": {
     "full_name_required": "Full name is required",
@@ -192,5 +203,39 @@
     "invalid_email": "Invalid email address format",
     "password_required": "Password is required",
     "password_too_short": "Password must be at least 8 characters"
+  },
+  "hotel_details": {
+    "loading_hotel": "Loading hotel...",
+    "loading_location": "Loading location...",
+    "something_went_wrong": "Something went wrong.",
+    "about_hotel": "About the Hotel",
+    "no_description": "No description available.",
+    "location": "Location",
+    "rating": "Rating",
+    "discount": "Discount",
+    "damascus": "Damascus",
+    "ready_to_stay": "Ready to stay?",
+    "choose_your_room": "Choose your room",
+    "book_now": "Book Now",
+    "hotel_gallery": "Hotel Gallery",
+    "contact_information": "Contact & Information",
+    "select_your_room": "Select Your Room",
+    "all_rooms": "All Rooms"
+  },
+  "room_details": {
+    "room_information_unavailable": "Room information is not available.",
+    "room_amenities": "Room Amenities",
+    "room_gallery": "Room Gallery",
+    "per_night": "per night",
+    "available": "Available",
+    "about_this_room": "About This Room",
+    "room_description": "Experience comfort and elegance in {room_name}. Room {room_number} offers a relaxing stay with carefully selected amenities and a premium atmosphere.",
+    "your_hotel": "Your Hotel",
+    "upcoming_bookings": "Upcoming Bookings",
+    "guest": "Guest",
+    "to": "to",
+    "unable_to_load_room": "Unable to load room",
+    "room": "Room",
+    "room_features": "Room Features"
   }
 }

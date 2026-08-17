@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -46,8 +47,8 @@ class _RoomDetailsPageState extends State<RoomDetailsPage> {
         final room = state.room;
 
         if (room == null) {
-          return const _RoomErrorView(
-            message: 'Room information is not available.',
+          return _RoomErrorView(
+            message: 'room_details.room_information_unavailable'.tr(),
           );
         }
 
@@ -104,7 +105,7 @@ class _RoomDetailsPageState extends State<RoomDetailsPage> {
 
                       _SectionTitle(
                         icon: Icons.auto_awesome,
-                        title: 'Room Amenities',
+                        title: 'room_details.room_amenities'.tr(),
                       ),
 
                       const SizedBox(height: 16),
@@ -129,9 +130,9 @@ class _RoomDetailsPageState extends State<RoomDetailsPage> {
                         const SizedBox(height: 36),
                       ],
                       if (room.type.images.length > 1) ...[
-                        const _SectionTitle(
+                        _SectionTitle(
                           icon: Icons.photo_library_outlined,
-                          title: 'Room Gallery',
+                          title: 'room_details.room_gallery'.tr(),
                         ),
 
                         const SizedBox(height: 16),
@@ -226,7 +227,7 @@ class _RoomHeader extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'per night',
+                  'room_details.per_night'.tr(),
                   style: GoogleFonts.plusJakartaSans(
                     fontSize: 12,
                     color: AppColors.onSurfaceVariant,
@@ -329,7 +330,7 @@ class _RoomStatus extends StatelessWidget {
           const SizedBox(width: 8),
 
           Text(
-            isAvailable ? 'Available' : status,
+            isAvailable ? 'room_details.available'.tr() : status,
             style: GoogleFonts.plusJakartaSans(
               fontSize: 13,
               fontWeight: FontWeight.w600,
@@ -354,18 +355,20 @@ class _RoomDescription extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const _SectionTitle(
+        _SectionTitle(
           icon: Icons.description_outlined,
-          title: 'About This Room',
+          title: 'room_details.about_this_room'.tr(),
         ),
 
         const SizedBox(height: 14),
 
         Text(
-          'Experience comfort and elegance in '
-          '${room.type.name}. Room ${room.roomNumber} '
-          'offers a relaxing stay with carefully selected '
-          'amenities and a premium atmosphere.',
+          'room_details.room_description'.tr(
+            namedArgs: {
+              'room_name': room.type.name,
+              'room_number': room.roomNumber.toString(),
+            },
+          ),
           style: GoogleFonts.plusJakartaSans(
             fontSize: 15,
             height: 1.7,
@@ -439,9 +442,9 @@ class _HotelInformation extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const _SectionTitle(
+          _SectionTitle(
             icon: Icons.hotel_outlined,
-            title: 'Your Hotel',
+            title: 'room_details.your_hotel'.tr(),
           ),
 
           const SizedBox(height: 20),
@@ -527,7 +530,7 @@ class _HotelInformation extends StatelessWidget {
               const Spacer(),
 
               Text(
-                'Room ${hotel.name}',
+                '${'room_details.room'.tr()} ${hotel.name}',
                 style: GoogleFonts.plusJakartaSans(
                   fontSize: 12,
                   color: AppColors.onSurfaceVariant,
@@ -583,7 +586,7 @@ class _RoomErrorView extends StatelessWidget {
               const SizedBox(height: 20),
 
               Text(
-                'Unable to load room',
+                'room_details.unable_to_load_room'.tr(),
                 style: GoogleFonts.notoSerif(
                   fontSize: 24,
                   fontWeight: FontWeight.w700,
@@ -628,9 +631,9 @@ class _BookingsSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const _SectionTitle(
+        _SectionTitle(
           icon: Icons.calendar_today_rounded,
-          title: 'Upcoming Bookings',
+          title: 'room_details.upcoming_bookings'.tr(),
         ),
         const SizedBox(height: 16),
         ListView.separated(
@@ -657,14 +660,14 @@ class _BookingsSection extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '${booking.checkIn} to ${booking.checkOut}',
+                        '${booking.checkIn} ${'room_details.to'.tr()} ${booking.checkOut}',
                         style: GoogleFonts.plusJakartaSans(
                           fontWeight: FontWeight.w600,
                           color: AppColors.primaryContainer,
                         ),
                       ),
                       Text(
-                        'Guest: ${booking.guestName}',
+                        '${'room_details.guest'.tr()}: ${booking.guestName}',
                         style: GoogleFonts.plusJakartaSans(
                           fontSize: 12,
                           color: AppColors.onSurfaceVariant,

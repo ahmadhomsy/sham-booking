@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -53,7 +54,8 @@ class HotelDetailsPage extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(24),
                 child: Text(
-                  state.hotelErrorMessage ?? 'Something went wrong.',
+                  state.hotelErrorMessage ??
+                      'hotel_details.something_went_wrong'.tr(),
                   textAlign: TextAlign.center,
                   style: AppTypography.bodyMd,
                 ),
@@ -77,8 +79,10 @@ class HotelDetailsPage extends StatelessWidget {
                           (hotel != null && hotel.images.isNotEmpty
                               ? hotel.images.first
                               : null),
-                      title: hotel?.name ?? 'Loading hotel...',
-                      location: hotel?.address ?? 'Loading location...',
+                      title: hotel?.name ?? 'hotel_details.loading_hotel'.tr(),
+                      location:
+                          hotel?.address ??
+                          'hotel_details.loading_location'.tr(),
                       rating: hotel?.rating,
                       isLoading: isLoading,
                       errorMessage: state.hotelErrorMessage,
@@ -98,7 +102,7 @@ class HotelDetailsPage extends StatelessWidget {
                           children: [
                             _SectionTitle(
                               icon: Icons.hotel_outlined,
-                              title: 'About the Hotel',
+                              title: 'hotel_details.about_hotel'.tr(),
                             ),
 
                             const SizedBox(height: 12),
@@ -106,7 +110,7 @@ class HotelDetailsPage extends StatelessWidget {
                             Text(
                               hotel.description?.isNotEmpty == true
                                   ? hotel.description!
-                                  : 'No description available.',
+                                  : 'hotel_details.no_description'.tr(),
                               style: AppTypography.bodyMd,
                             ),
 
@@ -138,7 +142,7 @@ class HotelDetailsPage extends StatelessWidget {
 
                             _SectionTitle(
                               icon: Icons.location_on_outlined,
-                              title: 'Location',
+                              title: 'hotel_details.location'.tr(),
                             ),
 
                             const SizedBox(height: 16),
@@ -208,15 +212,15 @@ class _HotelQuickInfo extends StatelessWidget {
             child: _QuickInfoItem(
               icon: Icons.star_rounded,
               value: hotel.rating,
-              label: 'Rating',
+              label: 'hotel_details.rating'.tr(),
               iconColor: AppColors.secondaryContainer,
             ),
           ),
-          const Expanded(
+          Expanded(
             child: _QuickInfoItem(
               icon: Icons.location_on_outlined,
-              value: 'Damascus',
-              label: 'Location',
+              value: 'hotel_details.damascus'.tr(),
+              label: 'hotel_details.location'.tr(),
               iconColor: AppColors.goldAccent,
             ),
           ),
@@ -224,7 +228,7 @@ class _HotelQuickInfo extends StatelessWidget {
             child: _QuickInfoItem(
               icon: Icons.local_offer_outlined,
               value: hotel.discount != null ? '${hotel.discount}%' : '—',
-              label: 'Discount',
+              label: 'hotel_details.discount'.tr(),
               iconColor: AppColors.secondaryContainer,
             ),
           ),
@@ -354,7 +358,7 @@ class _BottomBookingBar extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Ready to stay?',
+                    'hotel_details.ready_to_stay'.tr(),
                     style: GoogleFonts.plusJakartaSans(
                       fontSize: 12,
                       color: Colors.white70,
@@ -362,7 +366,9 @@ class _BottomBookingBar extends StatelessWidget {
                   ),
                   const SizedBox(height: 2),
                   Text(
-                    hotelName.isEmpty ? 'Choose your room' : hotelName,
+                    hotelName.isEmpty
+                        ? 'hotel_details.choose_your_room'.tr()
+                        : hotelName,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: GoogleFonts.plusJakartaSans(
@@ -393,9 +399,9 @@ class _BottomBookingBar extends StatelessWidget {
                 ),
                 elevation: 0,
               ),
-              child: const Text(
-                'Book Now',
-                style: TextStyle(
+              child: Text(
+                'hotel_details.book_now'.tr(),
+                style: const TextStyle(
                   fontWeight: FontWeight.w700,
                 ),
               ),
