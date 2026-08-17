@@ -76,6 +76,13 @@
       "discount": "{}% OFF"
     },
     "profile": {
+      "ai_concierge": {
+        "title": "SHAM BOOKING",
+        "subtitle": "Damascus AI Concierge",
+        "welcome": "Welcome to Damascus!",
+        "welcome_description": "How can I help you plan your trip and choose a hotel in the world's oldest continuously inhabited capital?",
+        "input_hint": "Ask about places, hotels, or restaurants in Damascus..."
+      },
       "unable_to_load": "Unable to load profile",
       "default_name": "Name",
       "default_email": "Email",

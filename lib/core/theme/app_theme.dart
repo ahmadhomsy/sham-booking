@@ -30,7 +30,7 @@ class AppTheme {
         centerTitle: true,
         iconTheme: IconThemeData(color: AppColors.primaryContainer),
       ),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: AppColors.surfaceContainerLowest,
         elevation: 2,
         shadowColor: const Color.fromRGBO(15, 32, 64, 0.08),
@@ -38,7 +38,7 @@ class AppTheme {
           borderRadius: BorderRadius.circular(12),
         ),
       ),
-      dialogTheme: DialogTheme(
+      dialogTheme: DialogThemeData(
         backgroundColor: AppColors.surfaceContainerLowest,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
@@ -48,7 +48,9 @@ class AppTheme {
         color: AppColors.outlineVariant,
         thickness: 1,
       ),
-      textTheme: GoogleFonts.plusJakartaSansTextTheme(ThemeData.light().textTheme),
+      textTheme: GoogleFonts.plusJakartaSansTextTheme(
+        ThemeData.light().textTheme,
+      ),
     );
   }
 
@@ -77,7 +79,7 @@ class AppTheme {
         centerTitle: true,
         iconTheme: IconThemeData(color: Color(0xFFF0F4F8)),
       ),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: const Color(0xFF181F2E),
         elevation: 2,
         shadowColor: Colors.black.withValues(alpha: 0.3),
@@ -85,7 +87,7 @@ class AppTheme {
           borderRadius: BorderRadius.circular(12),
         ),
       ),
-      dialogTheme: DialogTheme(
+      dialogTheme: DialogThemeData(
         backgroundColor: const Color(0xFF181F2E),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
@@ -95,7 +97,9 @@ class AppTheme {
         color: Color(0xFF2D3748),
         thickness: 1,
       ),
-      textTheme: GoogleFonts.plusJakartaSansTextTheme(ThemeData.dark().textTheme),
+      textTheme: GoogleFonts.plusJakartaSansTextTheme(
+        ThemeData.dark().textTheme,
+      ),
     );
   }
 }

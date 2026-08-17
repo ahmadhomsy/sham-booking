@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sham_booking/core/theme/app_colors.dart';
@@ -75,14 +76,17 @@ class _ContactAiConciergePageState extends State<ContactAiConciergePage> {
               color: AppColors.surfaceContainerLowest,
             ),
             titleSpacing: 0,
-            title: const Row(
+            title: Row(
               children: [
-                Icon(Icons.room_service, color: AppColors.secondaryContainer),
-                SizedBox(width: 10),
+                const Icon(
+                  Icons.room_service,
+                  color: AppColors.secondaryContainer,
+                ),
+                const SizedBox(width: 10),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'SHAM BOOKING',
                       style: TextStyle(
                         color: AppColors.surfaceContainerLowest,
@@ -92,8 +96,8 @@ class _ContactAiConciergePageState extends State<ContactAiConciergePage> {
                       ),
                     ),
                     Text(
-                      'Damascus AI Concierge',
-                      style: TextStyle(
+                      'home.profile.ai_concierge.subtitle'.tr(),
+                      style: const TextStyle(
                         fontSize: 11,
                         color: AppColors.primaryFixedDim,
                       ),
@@ -149,31 +153,34 @@ class _ContactAiConciergePageState extends State<ContactAiConciergePage> {
   }
 
   Widget _buildEmptyState() {
-    return const Center(
+    return Center(
       child: SingleChildScrollView(
-        padding: EdgeInsets.all(24),
+        padding: const EdgeInsets.all(24),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
+            const Icon(
               Icons.support_agent_rounded,
               size: 64,
               color: AppColors.goldAccent,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text(
-              'أهلاً بك في دمشق!',
-              style: TextStyle(
+              'home.profile.ai_concierge.welcome'.tr(),
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
                 color: AppColors.primary,
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Text(
-              'كيف يمكنني مساعدتك في تخطيط رحلتك واختيار فندقك في أقدم عاصمة مأهولة؟',
+              'home.profile.ai_concierge.welcome_description'.tr(),
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 14, color: AppColors.onSurfaceVariant),
+              style: const TextStyle(
+                fontSize: 14,
+                color: AppColors.onSurfaceVariant,
+              ),
             ),
           ],
         ),
@@ -245,9 +252,12 @@ class _ContactAiConciergePageState extends State<ContactAiConciergePage> {
               controller: _textController,
               onSubmitted: (_) => _handleSend(chatCubit),
               style: const TextStyle(color: AppColors.onSurface),
-              decoration: const InputDecoration(
-                hintText: 'اسأل عن الأماكن، الفنادق، أو المطاعم في دمشق...',
-                hintStyle: TextStyle(color: AppColors.outline, fontSize: 13),
+              decoration: InputDecoration(
+                hintText: 'home.profile.ai_concierge.input_hint'.tr(),
+                hintStyle: const TextStyle(
+                  color: AppColors.outline,
+                  fontSize: 13,
+                ),
                 border: InputBorder.none,
                 isDense: true,
               ),

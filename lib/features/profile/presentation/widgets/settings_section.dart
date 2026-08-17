@@ -29,51 +29,51 @@ class SettingsSection extends StatelessWidget {
           ),
           child: Column(
             children: [
-              SettingsListItem(
-                icon: Icons.notifications,
-                label: 'home.profile.settings.notifications'.tr(),
-                trailing: Transform.scale(
-                  scale: 0.8,
-                  child: Switch(
-                    value: false,
-                    thumbColor: WidgetStateProperty.resolveWith((states) {
-                      if (states.contains(WidgetState.selected)) {
-                        return Colors.white;
-                      }
-                      return AppColors.outline;
-                    }),
-
-                    trackColor: WidgetStateProperty.resolveWith((states) {
-                      if (states.contains(WidgetState.selected)) {
-                        return AppColors.secondaryContainer;
-                      }
-                      return AppColors.surfaceContainerLow;
-                    }),
-
-                    trackOutlineColor: WidgetStateProperty.resolveWith((
-                      states,
-                    ) {
-                      if (states.contains(WidgetState.selected)) {
-                        return Colors.transparent;
-                      }
-                      return AppColors.outlineVariant;
-                    }),
-                    onChanged: (value) async {
-                      await showModalBottomSheet<void>(
-                        context: context,
-                        backgroundColor: Colors.transparent,
-                        builder: (_) => ErrorBottomSheet(
-                          onPressed: () async {
-                            Navigator.pop(context);
-                          },
-                          errorMessage: 'home.feature_not_available'.tr(),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              ),
-              const Divider(indent: 16, height: 1),
+              // SettingsListItem(
+              //   icon: Icons.notifications,
+              //   label: 'home.profile.settings.notifications'.tr(),
+              //   trailing: Transform.scale(
+              //     scale: 0.8,
+              //     child: Switch(
+              //       value: false,
+              //       thumbColor: WidgetStateProperty.resolveWith((states) {
+              //         if (states.contains(WidgetState.selected)) {
+              //           return Colors.white;
+              //         }
+              //         return AppColors.outline;
+              //       }),
+              //
+              //       trackColor: WidgetStateProperty.resolveWith((states) {
+              //         if (states.contains(WidgetState.selected)) {
+              //           return AppColors.secondaryContainer;
+              //         }
+              //         return AppColors.surfaceContainerLow;
+              //       }),
+              //
+              //       trackOutlineColor: WidgetStateProperty.resolveWith((
+              //         states,
+              //       ) {
+              //         if (states.contains(WidgetState.selected)) {
+              //           return Colors.transparent;
+              //         }
+              //         return AppColors.outlineVariant;
+              //       }),
+              //       onChanged: (value) async {
+              //         await showModalBottomSheet<void>(
+              //           context: context,
+              //           backgroundColor: Colors.transparent,
+              //           builder: (_) => ErrorBottomSheet(
+              //             onPressed: () async {
+              //               Navigator.pop(context);
+              //             },
+              //             errorMessage: 'home.feature_not_available'.tr(),
+              //           ),
+              //         );
+              //       },
+              //     ),
+              //   ),
+              // ),
+              // const Divider(indent: 16, height: 1),
               BlocBuilder<ThemeCubit, ThemeMode>(
                 builder: (context, themeMode) {
                   final isDark = themeMode == ThemeMode.dark;
