@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sham_booking/core/helpers/launcher_service.dart';
 import 'package:sham_booking/core/theme/app_colors.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class HotelContactSection extends StatelessWidget {
   const HotelContactSection({

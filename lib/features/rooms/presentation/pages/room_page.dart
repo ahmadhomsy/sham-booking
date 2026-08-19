@@ -57,9 +57,9 @@ class _RoomDetailsPageState extends State<RoomDetailsPage> {
 
           bottomNavigationBar: StickyBottomBar(
             price: room.type.basePrice,
-            onTap: () {
+            onTap: () async {
               // هنا ننتقل لصفحة الحجز ونمرر الـ IDs المطلوبة
-              context.pushNamed(
+              await context.pushNamed(
                 'createBooking',
                 pathParameters: {
                   'hotelId': room.hotel.id.toString(),
@@ -366,7 +366,7 @@ class _RoomDescription extends StatelessWidget {
           'room_details.room_description'.tr(
             namedArgs: {
               'room_name': room.type.name,
-              'room_number': room.roomNumber.toString(),
+              'room_number': room.roomNumber,
             },
           ),
           style: GoogleFonts.plusJakartaSans(
@@ -619,7 +619,6 @@ class _BookingsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // فلترة الحجوزات النشطة فقط
     final activeBookings = bookings
         .where((b) => b.status.toString().toLowerCase() != 'cancelled')
         .toList();

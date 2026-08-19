@@ -36,7 +36,7 @@ class HotelGallerySection extends StatelessWidget {
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             itemCount: images.length,
-            separatorBuilder: (_, __) => const SizedBox(width: 12),
+            separatorBuilder: (_, _) => const SizedBox(width: 12),
             itemBuilder: (context, index) {
               return ClipRRect(
                 borderRadius: BorderRadius.circular(12),
@@ -45,17 +45,17 @@ class HotelGallerySection extends StatelessWidget {
                   child: CachedNetworkImage(
                     imageUrl: images[index],
                     fit: BoxFit.cover,
-                    placeholder: (_, __) => Container(
+                    placeholder: (_, _) => const ColoredBox(
                       color: AppColors.surfaceContainer,
-                      child: const Center(
+                      child: Center(
                         child: CircularProgressIndicator(
                           color: AppColors.secondary,
                         ),
                       ),
                     ),
-                    errorWidget: (_, __, ___) => Container(
+                    errorWidget: (_, _, _) => const ColoredBox(
                       color: AppColors.surfaceContainer,
-                      child: const Icon(
+                      child: Icon(
                         Icons.image_not_supported_outlined,
                         color: AppColors.outline,
                       ),

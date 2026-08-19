@@ -10,7 +10,7 @@ abstract class BookingEvent extends Equatable {
 class SubmitCreateBookingEvent extends BookingEvent {
   const SubmitCreateBookingEvent({
     required this.request,
-    required this.isStripe, // إضافة هذا المتغير لتحديد المسار
+    required this.isStripe,
   });
 
   final CreateBookingRequest request;

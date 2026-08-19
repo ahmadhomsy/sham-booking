@@ -70,4 +70,3 @@ class RoomInfoSection extends StatelessWidget {
     );
   }
 }
-

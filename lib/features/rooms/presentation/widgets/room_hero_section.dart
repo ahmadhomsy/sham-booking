@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:sham_booking/core/theme/app_colors.dart';
 import 'package:sham_booking/core/theme/app_text_styles.dart';
@@ -25,7 +24,7 @@ class RoomHeroSection extends StatelessWidget {
       leading: Padding(
         padding: const EdgeInsets.all(8),
         child: CircleAvatar(
-          backgroundColor: AppColors.primaryFixedDim.withOpacity(0.3),
+          backgroundColor: AppColors.primaryFixedDim.withValues(alpha: 0.3),
           child: IconButton(
             icon: const Icon(
               Icons.arrow_back_ios_new,

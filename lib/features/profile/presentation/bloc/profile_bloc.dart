@@ -5,7 +5,6 @@ import 'package:sham_booking/core/constants/app_string.dart';
 import 'package:sham_booking/core/constants/messages.dart';
 import 'package:sham_booking/core/error/failures.dart';
 import 'package:sham_booking/core/helpers/storage_helper.dart';
-import 'package:sham_booking/features/auth/data/data_sources/local_auth_data_source.dart';
 import 'package:sham_booking/features/auth/data/models/user_info_request.dart';
 import 'package:sham_booking/features/auth/domain/usecases/get_profile_use_case.dart';
 import 'package:sham_booking/features/auth/domain/usecases/logout_usecase.dart';
@@ -104,7 +103,6 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         emit(
           state.copyWith(
             status: ProfileStatus.updateProfileLoading,
-            errorMessage: null,
           ),
         );
 
@@ -146,11 +144,11 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
             );
           },
         );
-      } catch (e) {
+      } on Exception catch (_) {
         emit(
           state.copyWith(
             status: ProfileStatus.updateProfileFailure,
-            errorMessage: e.toString(),
+            errorMessage: 'An error occurred while updating the profile.',
           ),
         );
       }

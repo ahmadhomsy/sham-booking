@@ -6,23 +6,15 @@ class StripePaymentMethodRepositoryImpl
   @override
   Future<String> createCardPaymentMethodId() async {
     try {
-      print('Creating PaymentMethod...');
       final paymentMethod = await Stripe.instance.createPaymentMethod(
         params: const PaymentMethodParams.card(
           paymentMethodData: PaymentMethodData(),
         ),
       );
-      print("**************************************************************");
-      print(paymentMethod.id);
-      print("**************************************************************");
+
       return paymentMethod.id;
-    } catch (e) {
-      print("**************************************************************");
-
-      print(e);
-      print("**************************************************************");
-
-      return "";
+    } on Exception catch (_) {
+      return '';
     }
   }
 }

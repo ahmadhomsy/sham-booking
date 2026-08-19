@@ -53,7 +53,7 @@ class RoomRepositoryImpl implements RoomRepository {
   @override
   Future<Either<Failure, GetAvailableRoomResponse>> getAvailableRoom() {
     return _execute(
-      action: () => remoteAuthDataSource.getAvailableRoom(),
+      action: remoteAuthDataSource.getAvailableRoom,
     );
   }
 

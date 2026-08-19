@@ -63,7 +63,6 @@ class _HotelLocationPageState extends State<HotelLocationPage> {
                 ),
               ),
             },
-            myLocationButtonEnabled: true,
             zoomControlsEnabled: false,
             mapToolbarEnabled: false,
             onMapCreated: (controller) {
@@ -77,10 +76,10 @@ class _HotelLocationPageState extends State<HotelLocationPage> {
             left: 16,
             child: SafeArea(
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: AppColors.surfaceContainerLowest,
                   shape: BoxShape.circle,
-                  boxShadow: const [
+                  boxShadow: [
                     BoxShadow(
                       blurRadius: 12,
                       color: Colors.black12,

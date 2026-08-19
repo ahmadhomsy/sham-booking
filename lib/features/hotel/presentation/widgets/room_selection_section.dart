@@ -21,7 +21,7 @@ class AppTypography {
   static final TextStyle labelSm = GoogleFonts.plusJakartaSans(
     fontSize: 12,
     fontWeight: FontWeight.w600,
-    height: 1.0,
+    height: 1,
     letterSpacing: 0.6,
   );
 }

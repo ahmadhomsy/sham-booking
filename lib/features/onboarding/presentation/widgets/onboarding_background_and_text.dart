@@ -4,10 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OnboardingBackgroundAndText extends StatelessWidget {
   const OnboardingBackgroundAndText({
-    super.key,
     required this.image,
     required this.title,
     required this.desc,
+    super.key,
   });
   final String image;
   final String title;
