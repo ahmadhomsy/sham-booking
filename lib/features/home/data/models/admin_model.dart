@@ -11,11 +11,11 @@ class AdminModel {
     required this.role,
     required this.phone,
     required this.nationality,
+    required this.isVerified,
     this.stripeCustomerId,
     this.paymentMethodId,
     this.paypalVaultId,
     this.paypalEmail,
-    required this.isVerified,
   });
 
   factory AdminModel.fromJson(Map<String, dynamic> json) =>

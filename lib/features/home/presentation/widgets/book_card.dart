@@ -6,8 +6,8 @@ import 'package:sham_booking/features/booking/data/models/get_booking_response.d
 
 class BookCard extends StatelessWidget {
   const BookCard({
-    super.key,
     required this.booking,
+    super.key,
     this.onTap,
   });
 
@@ -18,16 +18,16 @@ class BookCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // بما أننا نستخدم الـ Model، جميع المتغيرات هنا آمنة ومعروفة النوع (Type-Safe)
-    final String hotelName = booking.hotel.name;
-    final String status = booking.status;
-    final String roomName = booking.room.type.name;
-    final String checkIn = booking.checkIn;
-    final String checkOut = booking.checkOut;
-    final String nights = booking.nights.toString(); // تحويل من int إلى String
-    final String totalPrice = booking.totalPrice;
+    final hotelName = booking.hotel.name;
+    final status = booking.status;
+    final roomName = booking.room.type.name;
+    final checkIn = booking.checkIn;
+    final checkOut = booking.checkOut;
+    final nights = booking.nights.toString(); // تحويل من int إلى String
+    final totalPrice = booking.totalPrice;
 
     // جلب الصورة (إذا لم توجد صور للغرفة، نعرض صورة الفندق الرئيسية)
-    final String image = booking.room.type.images.isNotEmpty
+    final image = booking.room.type.images.isNotEmpty
         ? booking.room.type.images.first
         : booking.hotel.mainImg;
 
@@ -39,11 +39,15 @@ class BookCard extends StatelessWidget {
           color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: Theme.of(context).colorScheme.outlineVariant.withValues(alpha: 0.5),
+            color: Theme.of(
+              context,
+            ).colorScheme.outlineVariant.withValues(alpha: 0.5),
           ),
           boxShadow: [
             BoxShadow(
-              color: isDark ? Colors.black.withValues(alpha: 0.3) : AppColors.primary.withValues(alpha: 0.04),
+              color: isDark
+                  ? Colors.black.withValues(alpha: 0.3)
+                  : AppColors.primary.withValues(alpha: 0.04),
               blurRadius: 10,
               offset: const Offset(0, 4),
             ),
@@ -153,7 +157,9 @@ class BookCard extends StatelessWidget {
                   Text(
                     '\$$totalPrice',
                     style: TextStyle(
-                      color: isDark ? AppColors.goldAccent : AppColors.primaryContainer,
+                      color: isDark
+                          ? AppColors.goldAccent
+                          : AppColors.primaryContainer,
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
                     ),
@@ -188,7 +194,7 @@ class BookCard extends StatelessWidget {
   }
 
   Widget _buildStatusBadge(String status) {
-    final String text = 'home.bookings.${status.toLowerCase()}'.tr();
+    final text = 'home.bookings.${status.toLowerCase()}'.tr();
 
     // التلوين بناءً على الحالة الواردة من السيرفر
     final (Color bgColor, Color textColor) = switch (status.toLowerCase()) {

@@ -11,8 +11,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.8
   awesome_dialog: ^3.3.0
+  cupertino_icons: ^1.0.8
   dartz: ^0.10.1
   easy_localization: ^3.0.8
   bloc: ^9.2.1
@@ -54,11 +54,11 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^6.0.0
   mockito: ^5.6.4
   build_runner: ^2.15.0
   very_good_analysis: ^10.2.0
   test: ^1.30.0
+  flutter_lints: ^6.0.0
   flutter_flavorizr: ^2.4.2
   flutter_launcher_icons: ^0.14.4
   flutter_native_splash: ^2.4.7

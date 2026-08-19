@@ -1,10 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sham_booking/core/helpers/share_service.dart';
 import 'package:sham_booking/core/theme/app_colors.dart';
-import 'package:sham_booking/features/home/presentation/widgets/custom_hotel_image.dart';
 import 'package:sham_booking/features/hotel/presentation/widgets/custom_hotel_details_image.dart';
 
 class AppTypography {
@@ -22,16 +20,16 @@ class AppTypography {
   static final TextStyle labelSm = GoogleFonts.plusJakartaSans(
     fontSize: 12,
     fontWeight: FontWeight.w600,
-    height: 1.0,
+    height: 1,
     letterSpacing: 0.6,
   );
 }
 
 class HeroSection extends StatelessWidget {
   const HeroSection({
-    super.key,
     required this.title,
     required this.location,
+    super.key,
     this.imageUrl,
     this.rating,
     this.isLoading = false,
@@ -64,8 +62,8 @@ class HeroSection extends StatelessWidget {
                 end: Alignment.bottomCenter,
                 colors: [
                   Colors.transparent,
-                  const Color(0xFF000920).withOpacity(0.2),
-                  const Color(0xFF000920).withOpacity(0.8),
+                  const Color(0xFF000920).withValues(alpha: 0.2),
+                  const Color(0xFF000920).withValues(alpha: 0.8),
                 ],
               ),
             ),
@@ -166,8 +164,8 @@ class HeroSection extends StatelessWidget {
                       child: Text(
                         location,
                         style: AppTypography.bodyLg.copyWith(
-                          color: AppColors.surfaceContainerLowest.withOpacity(
-                            0.9,
+                          color: AppColors.surfaceContainerLowest.withValues(
+                            alpha: 0.9,
                           ),
                         ),
                       ),

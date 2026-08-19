@@ -45,7 +45,6 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
             color: AppColors.primaryContainer,
           ),
         ),
-        // استخدمنا BlocListener للاستماع لنتائج عمليات (الحذف/التعديل/الإلغاء)
         body: BlocListener<CrudBookingBloc, CrudBookingState>(
           listener: (context, crudState) {
             if (crudState.status == CrudBookingStatus.failure) {
@@ -59,18 +58,18 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text('booking.booking_deleted_success'.tr())),
               );
-              Navigator.pop(context); // العودة للصفحة السابقة بعد الحذف
+              Navigator.pop(context);
             } else if (crudState.status == CrudBookingStatus.cancelSuccess) {
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('booking.booking_cancelled_success'.tr())),
+                SnackBar(
+                  content: Text('booking.booking_cancelled_success'.tr()),
+                ),
               );
-              // إعادة جلب التفاصيل لتحديث حالة الحجز في الواجهة لتصبح cancelled
               context.read<DetailsBookBloc>().add(FetchBookingDetailsEvent());
             } else if (crudState.status == CrudBookingStatus.updateSuccess) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text('booking.booking_updated_success'.tr())),
               );
-              // إعادة جلب التفاصيل لتحديث البيانات
               context.read<DetailsBookBloc>().add(FetchBookingDetailsEvent());
             }
           },
@@ -78,7 +77,7 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
             builder: (context, state) {
               switch (state.status) {
                 case DetailsBookStatus.loading:
-                  return const _LoadingView(); // افتراض أن لديك هذه الـ Widget
+                  return const _LoadingView();
 
                 case DetailsBookStatus.failure:
                   return _ErrorView(
@@ -101,11 +100,9 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
 
                   return Column(
                     children: [
-                      // الـ Widget الخاصة بعرض تفاصيل الحجز (يجب أن تأخذ Expanded أو Flexible إذا كانت قابلة للتمرير)
                       Expanded(
                         child: _BookingDetailsContent(booking: booking),
                       ),
-                      // شريط الأزرار في الأسفل
                       _BookingActionButtons(booking: booking),
                     ],
                   );
@@ -124,19 +121,12 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
 class _BookingActionButtons extends StatelessWidget {
   const _BookingActionButtons({required this.booking});
 
-  final BookingData
-  booking; // استبدل dynamic بنوع الموديل الخاص بك (مثلاً BookingData)
+  final BookingData booking;
 
   @override
   Widget build(BuildContext context) {
-    // 1. تحديد الحالات (تأكد من مطابقة الكلمات المكتوبة هنا للكلمات القادمة من الـ API لديك)
-    final String? status = booking.status.toString().toLowerCase();
-
-    // الإلغاء والتعديل مسموح فقط إذا كان الحجز قيد الانتظار أو مؤكد ولم يكتمل أو يلغى
-    final bool canCancelOrUpdate = status == 'pending' || status == 'confirmed';
-
-    // الحذف مسموح إذا انتهى الحجز (مكتمل) أو تم إلغاؤه مسبقاً
-    final bool canDelete = status == 'completed' || status == 'cancelled';
+    final status = booking.status.toString().toLowerCase();
+    final canCancelOrUpdate = status == 'pending' || status == 'confirmed';
 
     return BlocBuilder<CrudBookingBloc, CrudBookingState>(
       builder: (context, crudState) {
@@ -148,7 +138,7 @@ class _BookingActionButtons extends StatelessWidget {
             color: Colors.white,
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.05),
+                color: Colors.black.withValues(alpha: 0.05),
                 blurRadius: 10,
                 offset: const Offset(0, -5),
               ),
@@ -158,21 +148,17 @@ class _BookingActionButtons extends StatelessWidget {
             child: Row(
               children: [
                 if (canCancelOrUpdate) ...[
-                  // زر التعديل
                   Expanded(
                     child: OutlinedButton(
                       onPressed: isLoading
                           ? null
                           : () async {
-                              // نفتح الـ Dialog وننتظر منه الريكويست المُحدث
-                              final UpdateBookingRequest? updatedRequest =
+                              final updatedRequest =
                                   await showDialog<UpdateBookingRequest>(
                                     context: context,
                                     builder: (ctx) =>
                                         UpdateBookingDialog(booking: booking),
                                   );
-
-                              // إذا عاد المستخدم ببيانات (لم يضغط إلغاء) وكان الـ id غير فارغ
                               if (updatedRequest != null && context.mounted) {
                                 context.read<CrudBookingBloc>().add(
                                   SubmitUpdateBookingEvent(updatedRequest),
@@ -183,11 +169,10 @@ class _BookingActionButtons extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 12),
-                  // زر الإلغاء
                   Expanded(
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.orange, // لون تحذيري
+                        backgroundColor: Colors.orange,
                         foregroundColor: Colors.white,
                       ),
                       onPressed: isLoading
@@ -195,18 +180,14 @@ class _BookingActionButtons extends StatelessWidget {
                           : () => _confirmAction(
                               context: context,
                               title: 'booking.cancel_booking'.tr(),
-                              content:
-                                  'booking.are_you_sure_cancel'.tr(),
+                              content: 'booking.are_you_sure_cancel'.tr(),
                               onConfirm: () {
-                                // التأكد من أن الـ id ليس null قبل الإرسال
                                 if (booking.id != null) {
                                   context.read<CrudBookingBloc>().add(
                                     SubmitCancelBookingEvent(
-                                      // هنا نمرر الـ Request كاملاً بالبيانات المطلوبة
                                       CancelBookingRequest(
                                         id: booking.id!,
-                                        cancelReason:
-                                            'Cancelled by user', // نص افتراضي لسبب الإلغاء
+                                        cancelReason: 'Cancelled by user',
                                       ),
                                     ),
                                   );
@@ -225,40 +206,6 @@ class _BookingActionButtons extends StatelessWidget {
                     ),
                   ),
                 ],
-
-                // if (canDelete) ...[
-                //   // زر الحذف
-                //   Expanded(
-                //     child: ElevatedButton(
-                //       style: ElevatedButton.styleFrom(
-                //         backgroundColor: Colors.red, // لون خطر للحذف
-                //         foregroundColor: Colors.white,
-                //       ),
-                //       onPressed: isLoading
-                //           ? null
-                //           : () => _confirmAction(
-                //               context: context,
-                //               title: 'Delete Booking',
-                //               content:
-                //                   'Are you sure you want to delete this record? This action cannot be undone.',
-                //               onConfirm: () {
-                //                 context.read<CrudBookingBloc>().add(
-                //                   SubmitDeleteBookingEvent(booking.id!),
-                //                 );
-                //               },
-                //             ),
-                //       child: isLoading
-                //           ? const SizedBox(
-                //               height: 20,
-                //               width: 20,
-                //               child: CircularProgressIndicator(
-                //                 color: Colors.white,
-                //               ),
-                //             )
-                //           : const Text('Delete Record'),
-                //     ),
-                //   ),
-                // ],
               ],
             ),
           ),
@@ -267,14 +214,13 @@ class _BookingActionButtons extends StatelessWidget {
     );
   }
 
-  // دالة مساعدة لإظهار Dialog تأكيد قبل الحذف أو الإلغاء لتجنب الأخطاء غير المقصودة
-  void _confirmAction({
+  Future<void> _confirmAction({
     required BuildContext context,
     required String title,
     required String content,
     required VoidCallback onConfirm,
-  }) {
-    showDialog(
+  }) async {
+    await showDialog<void>(
       context: context,
       builder: (ctx) => AlertDialog(
         title: Text(title),
@@ -287,8 +233,8 @@ class _BookingActionButtons extends StatelessWidget {
           ElevatedButton(
             style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
             onPressed: () {
-              Navigator.pop(ctx); // إغلاق الـ Dialog
-              onConfirm(); // تنفيذ العملية
+              Navigator.pop(ctx);
+              onConfirm();
             },
             child: Text(
               'booking.yes_confirm'.tr(),
@@ -599,7 +545,7 @@ class _HotelCard extends StatelessWidget {
                       ? Image.network(
                           image,
                           fit: BoxFit.cover,
-                          errorBuilder: (_, __, ___) {
+                          errorBuilder: (_, _, _) {
                             return const _ImagePlaceholder();
                           },
                         )
@@ -1318,9 +1264,9 @@ class _ImagePlaceholder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return const ColoredBox(
       color: AppColors.backgroundEnd,
-      child: const Icon(
+      child: Icon(
         Icons.hotel_outlined,
         color: AppColors.primaryContainer,
         size: 30,

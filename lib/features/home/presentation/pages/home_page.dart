@@ -1,11 +1,8 @@
 import 'dart:async';
-
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sham_booking/core/theme/app_colors.dart';
 import 'package:sham_booking/core/theme/app_text_styles.dart';
-import 'package:sham_booking/core/widgets/error_bottom_sheet.dart';
 import 'package:sham_booking/features/home/presentation/bloc/get_book_bloc.dart';
 import 'package:sham_booking/features/home/presentation/bloc/home_rooms_bloc.dart';
 import 'package:sham_booking/features/home/presentation/bloc/hotel_bloc.dart';
@@ -177,26 +174,6 @@ class _HomePageState extends State<HomePage>
         style: AppTextStyles.notoSerif20primaryContainerBold,
       ),
       centerTitle: true,
-      // actions: [
-      //   IconButton(
-      //     icon: const Icon(
-      //       Icons.notifications_outlined,
-      //       color: AppColors.primaryContainer,
-      //     ),
-      //     onPressed: () async {
-      //       await showModalBottomSheet<void>(
-      //         context: context,
-      //         backgroundColor: Colors.transparent,
-      //         builder: (_) => ErrorBottomSheet(
-      //           onPressed: () async {
-      //             Navigator.pop(context);
-      //           },
-      //           errorMessage: 'home.feature_not_available'.tr(),
-      //         ),
-      //       );
-      //     },
-      //   ),
-      // ],
     );
   }
 }

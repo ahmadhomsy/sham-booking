@@ -47,12 +47,12 @@ class _MapSnippetSectionState extends State<MapSnippetSection> {
     super.dispose();
   }
 
-  void _openFullMap() {
+  Future<void> _openFullMap() async {
     if (widget.latitude == null || widget.longitude == null) {
       return;
     }
 
-    context.pushNamed(
+    await context.pushNamed(
       'hotelLocation',
       queryParameters: {
         'latitude': widget.latitude.toString(),

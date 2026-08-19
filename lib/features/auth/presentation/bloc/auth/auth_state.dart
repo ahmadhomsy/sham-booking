@@ -3,7 +3,7 @@ part of 'auth_bloc.dart';
 enum AuthStatus { initial, loading, success, failure, successVerify }
 
 class AuthState extends Equatable {
-  AuthState({
+  const AuthState({
     this.role,
     this.isPasswordObscure = true,
     this.isAgreeTerms = false,

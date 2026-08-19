@@ -4,9 +4,8 @@ import 'package:sham_booking/features/booking/data/models/find_one_response.dart
 import 'package:sham_booking/features/booking/data/models/update_booking_request.dart';
 
 class UpdateBookingDialog extends StatefulWidget {
+  const UpdateBookingDialog({required this.booking, super.key});
   final BookingData booking;
-
-  const UpdateBookingDialog({super.key, required this.booking});
 
   @override
   State<UpdateBookingDialog> createState() => _UpdateBookingDialogState();
@@ -55,7 +54,7 @@ class _UpdateBookingDialogState extends State<UpdateBookingDialog> {
 
   // دالة مساعدة لاختيار التاريخ بسهولة
   Future<void> _selectDate(TextEditingController controller) async {
-    final DateTime? picked = await showDatePicker(
+    final picked = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime(2000), // يمكنك تعديل النطاق الزمني
@@ -87,8 +86,9 @@ class _UpdateBookingDialogState extends State<UpdateBookingDialog> {
                   labelText: 'booking.full_name'.tr(),
                   border: const OutlineInputBorder(),
                 ),
-                validator: (value) =>
-                    value == null || value.isEmpty ? 'booking.enter_name'.tr() : null,
+                validator: (value) => value == null || value.isEmpty
+                    ? 'booking.enter_name'.tr()
+                    : null,
               ),
               const SizedBox(height: 12),
 
@@ -100,8 +100,9 @@ class _UpdateBookingDialogState extends State<UpdateBookingDialog> {
                   labelText: 'booking.phone'.tr(),
                   border: const OutlineInputBorder(),
                 ),
-                validator: (value) =>
-                    value == null || value.isEmpty ? 'booking.enter_phone'.tr() : null,
+                validator: (value) => value == null || value.isEmpty
+                    ? 'booking.enter_phone'.tr()
+                    : null,
               ),
               const SizedBox(height: 12),
 
@@ -116,8 +117,9 @@ class _UpdateBookingDialogState extends State<UpdateBookingDialog> {
                   border: const OutlineInputBorder(),
                   suffixIcon: const Icon(Icons.calendar_today),
                 ),
-                validator: (value) =>
-                    value == null || value.isEmpty ? 'booking.please_select_dates'.tr() : null,
+                validator: (value) => value == null || value.isEmpty
+                    ? 'booking.please_select_dates'.tr()
+                    : null,
               ),
               const SizedBox(height: 12),
 
@@ -131,8 +133,9 @@ class _UpdateBookingDialogState extends State<UpdateBookingDialog> {
                   border: const OutlineInputBorder(),
                   suffixIcon: const Icon(Icons.calendar_today),
                 ),
-                validator: (value) =>
-                    value == null || value.isEmpty ? 'booking.please_select_dates'.tr() : null,
+                validator: (value) => value == null || value.isEmpty
+                    ? 'booking.please_select_dates'.tr()
+                    : null,
               ),
               const SizedBox(height: 12),
 

@@ -24,8 +24,12 @@ class SpeechService {
     String localeId = 'ar-SA', // العربية كافتراضي
   }) async {
     await _speech.listen(
-      localeId: localeId,
-      onResult: (val) => onResult(val.recognizedWords),
+      onResult: (result) {
+        /* ... */
+      },
+      listenOptions: stt.SpeechListenOptions(
+        localeId: 'en_US',
+      ),
     );
   }
 

@@ -16,7 +16,6 @@ class DetailsBookState extends Equatable {
 
   final DetailsBookStatus status;
   final String? errorMessage;
-  // تأكد من استيراد FindOneResponse من ملف المودل الخاص بك
   final FindOneResponse? bookingDetails;
 
   DetailsBookState copyWith({

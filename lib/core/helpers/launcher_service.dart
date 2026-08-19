@@ -4,7 +4,7 @@ class LauncherService {
   static Future<void> openUrl(String urlString) async {
     final url = Uri.parse(urlString);
     if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
-      throw 'Could not launch $url';
+      throw Exception('Could not launch $url');
     }
   }
 
@@ -19,7 +19,7 @@ class LauncherService {
     );
 
     if (!await launchUrl(emailUri)) {
-      throw 'Could not launch $emailUri';
+      throw Exception('Could not launch $emailUri');
     }
   }
 
@@ -39,7 +39,7 @@ class LauncherService {
     );
 
     if (!await launchUrl(phoneUri)) {
-      throw 'Could not launch $phoneUri';
+      throw Exception('Could not launch $phoneUri');
     }
   }
 }

@@ -88,7 +88,7 @@ class HotelCardShimmer extends StatelessWidget {
 
                   20.verticalSpace,
 
-                  Divider(
+                  const Divider(
                     height: 1,
                     color: AppColors.outlineVariant,
                   ),

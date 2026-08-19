@@ -107,13 +107,13 @@ class BookingUserModel {
     required this.fullName,
     required this.email,
     required this.role,
+    required this.isVerified,
     this.phone,
     this.nationality,
     this.stripeCustomerId,
     this.paymentMethodId,
     this.paypalVaultId,
     this.paypalEmail,
-    required this.isVerified,
   });
 
   factory BookingUserModel.fromJson(Map<String, dynamic> json) =>

@@ -38,7 +38,7 @@ class ApiInterceptors extends Interceptor {
       if (refreshToken != null) {
         final dio = Dio();
         try {
-          final response = await dio.post(
+          final response = await dio.post<dynamic>(
             '${EndPoints.baseUrl}${EndPoints.refreshToken}',
             data: {
               'refresh_token': refreshToken,
@@ -46,17 +46,18 @@ class ApiInterceptors extends Interceptor {
             },
           );
           if (response.statusCode == 200 || response.statusCode == 201) {
-            final dynamic rawData = response.data;
-            final Map<String, dynamic> dataMap = (rawData is Map<String, dynamic>)
+            final rawData = response.data;
+            final dataMap = (rawData is Map<String, dynamic>)
                 ? ((rawData['data'] is Map<String, dynamic>)
-                    ? rawData['data'] as Map<String, dynamic>
-                    : rawData)
+                      ? rawData['data'] as Map<String, dynamic>
+                      : rawData)
                 : <String, dynamic>{};
 
             final newAccessToken =
                 (dataMap['access_token'] ?? dataMap['accessToken'])?.toString();
             final newRefreshToken =
-                (dataMap['refresh_token'] ?? dataMap['refreshToken'])?.toString();
+                (dataMap['refresh_token'] ?? dataMap['refreshToken'])
+                    ?.toString();
 
             if (newAccessToken != null && newAccessToken.isNotEmpty) {
               await secureStorage.write(
@@ -73,11 +74,13 @@ class ApiInterceptors extends Interceptor {
 
               err.requestOptions.headers['Authorization'] =
                   'Bearer $newAccessToken';
-              final retryResponse = await dio.fetch(err.requestOptions);
+              final retryResponse = await dio.fetch<dynamic>(
+                err.requestOptions,
+              );
               return handler.resolve(retryResponse);
             }
           }
-        } catch (e) {
+        } on Exception catch (_) {
           // Token refresh failed. Clear tokens.
           await secureStorage.delete(key: accessTokenKey);
           await secureStorage.delete(key: refreshTokenKey);

@@ -1,8 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:sham_booking/features/home/domain/entities/hotel_entity.dart';
-
-import 'admin_model.dart';
-import 'city_model.dart';
+import 'package:sham_booking/features/home/data/models/admin_model.dart';
+import 'package:sham_booking/features/home/data/models/city_model.dart';
 
 part 'hotel_model.g.dart';
 

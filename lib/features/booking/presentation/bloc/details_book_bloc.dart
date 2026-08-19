@@ -16,8 +16,7 @@ class DetailsBookBloc extends Bloc<DetailsBookEvent, DetailsBookState> {
     on<FetchBookingDetailsEvent>(_onFetchBookingDetails);
   }
 
-  final FindOneUseCase
-  findOneBookingUseCase; // استبدل الاسم باسم الـ UseCase الخاص بك
+  final FindOneUseCase findOneBookingUseCase;
   final int bookId;
 
   Future<void> _onFetchBookingDetails(

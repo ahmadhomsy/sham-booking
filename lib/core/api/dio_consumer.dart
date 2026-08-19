@@ -17,15 +17,14 @@ class DioConsumer extends ApiConsumer {
       ),
     );
   }
-  final ApiInterceptors apiInterceptors;
 
+  final ApiInterceptors apiInterceptors;
   final Dio dio;
+
   @override
   Future<dynamic> delete(String url) async {
     try {
-      final response = await dio.delete(
-        url,
-      );
+      final response = await dio.delete<dynamic>(url);
       return response.data;
     } on DioException catch (e) {
       handelDioException(e);
@@ -38,7 +37,7 @@ class DioConsumer extends ApiConsumer {
     Map<String, dynamic>? queryParameters,
   }) async {
     try {
-      final response = await dio.get(
+      final response = await dio.get<dynamic>(
         url,
         queryParameters: queryParameters,
       );
@@ -49,9 +48,12 @@ class DioConsumer extends ApiConsumer {
   }
 
   @override
-  Future<dynamic> post(String url, {data}) async {
+  Future<dynamic> post(
+    String url, {
+    dynamic data,
+  }) async {
     try {
-      final response = await dio.post(
+      final response = await dio.post<dynamic>(
         url,
         data: data,
       );
@@ -62,9 +64,15 @@ class DioConsumer extends ApiConsumer {
   }
 
   @override
-  Future<dynamic> put(String url, {data}) async {
+  Future<dynamic> put(
+    String url, {
+    dynamic data,
+  }) async {
     try {
-      final response = await dio.put(url, data: data);
+      final response = await dio.put<dynamic>(
+        url,
+        data: data,
+      );
       return response.data;
     } on DioException catch (e) {
       handelDioException(e);
@@ -77,7 +85,7 @@ class DioConsumer extends ApiConsumer {
     dynamic data,
   }) async {
     try {
-      final response = await dio.patch(
+      final response = await dio.patch<dynamic>(
         url,
         data: data,
       );

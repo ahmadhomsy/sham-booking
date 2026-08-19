@@ -32,7 +32,10 @@ class _RoomGallerySectionState extends State<RoomGallerySection> {
       return const SizedBox(
         height: 300,
         child: Center(
-          child: Icon(Icons.image_not_supported_outlined, color: AppColors.primary),
+          child: Icon(
+            Icons.image_not_supported_outlined,
+            color: AppColors.primary,
+          ),
         ),
       );
     }
@@ -53,11 +56,11 @@ class _RoomGallerySectionState extends State<RoomGallerySection> {
               final image = widget.images[index];
 
               return GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(
-                    PageRouteBuilder(
+                onTap: () async {
+                  await Navigator.of(context).push<void>(
+                    PageRouteBuilder<void>(
                       opaque: false,
-                      pageBuilder: (_, __, ___) {
+                      pageBuilder: (_, _, _) {
                         return FullScreenImageViewer(
                           images: widget.images,
                           initialIndex: index,
@@ -73,12 +76,12 @@ class _RoomGallerySectionState extends State<RoomGallerySection> {
                     imageUrl: image,
                     width: double.infinity,
                     fit: BoxFit.cover,
-                    placeholder: (_, __) {
+                    placeholder: (_, _) {
                       return Container(
                         color: AppColors.surfaceContainer,
                       );
                     },
-                    errorWidget: (_, __, ___) {
+                    errorWidget: (_, _, _) {
                       return const Center(
                         child: Icon(
                           Icons.broken_image_outlined,
