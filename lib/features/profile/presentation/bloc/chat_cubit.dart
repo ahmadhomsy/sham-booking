@@ -76,9 +76,8 @@ class ChatCubit extends Cubit<ChatState> {
           isLoading: false,
         ),
       );
-    } catch (e) {
+    } on Exception catch (_) {
       // الخطأ الحقيقي للمطور فقط
-      print('Chat error: $e');
 
       const userFriendlyMessage = 'عذراً، لم أتمكن من معالجة رسالتك حالياً. ';
 

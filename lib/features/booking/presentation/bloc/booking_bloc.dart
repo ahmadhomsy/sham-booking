@@ -3,7 +3,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:sham_booking/core/constants/app_string.dart';
-import 'package:sham_booking/core/constants/messages.dart';
 import 'package:sham_booking/core/error/failures.dart';
 import 'package:sham_booking/core/helpers/storage_helper.dart';
 import 'package:sham_booking/features/auth/data/models/user_info_request.dart';
@@ -43,15 +42,10 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
     try {
       final isStripePayment = event.isStripe;
 
-      // 1. يتم إنشاء PaymentMethod وتحديث بيانات المستخدم فقط إذا:
-      // - طريقة الدفع هي Stripe
-      // - وَ المستخدم ليس لديه بطاقة محفوظة مسبقاً (!state.hasPaymentMethod)
       if (isStripePayment && !state.hasPaymentMethod) {
-        // أ) جلب الـ Payment Method ID من سترايب
         final paymentMethodId = await createStripePaymentMethodUseCase();
         final id = box.read<int>(userId);
 
-        // ب) تحديث بيانات المستخدم لحفظ الـ paymentMethodId
         final userUpdateResult = await updateUserUseCase(
           UserInfoRequest(
             paymentMethodId: paymentMethodId,
@@ -62,14 +56,13 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
         var updateFailed = false;
         String? errorMessage;
 
-        userUpdateResult.fold(
-          (failure) {
+        await userUpdateResult.fold(
+          (failure) async {
             updateFailed = true;
             errorMessage = _mapFailureToMessage(failure);
           },
-          (_) {
-            // جـ) حفظ القيمة محلياً فور النجاح
-            box.write(hasPaymentMethodKey, true);
+          (_) async {
+            await box.write(hasPaymentMethodKey, true);
           },
         );
 
@@ -80,14 +73,12 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
               errorMessage: errorMessage,
             ),
           );
-          return; // إيقاف العملية عند فشل تحديث المستخدم
+          return;
         }
 
-        // د) تحديث الـ State لتصبح البطاقة محفوظة في الجلسة الحالية
         emit(state.copyWith(hasPaymentMethod: true));
       }
 
-      // 2. إنشاء الحجز (يُنفّذ مباشرة إذا كانت البطاقة محفوظة مسبقاً أو إذا كان الدفع نقداً)
       final failureOrUnit = await createBookingUseCase(event.request);
 
       failureOrUnit.fold(
@@ -99,18 +90,14 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
         ),
         (_) => emit(state.copyWith(status: BookingStatus.createSuccess)),
       );
-    } on StripeException catch (error) {
-      print('Stripe error: ${error.error.localizedMessage}');
-
+    } on StripeException {
       emit(
         state.copyWith(
           status: BookingStatus.failure,
           errorMessage: 'booking.payment_failed'.tr(),
         ),
       );
-    } catch (e) {
-      print('Booking error: $e');
-
+    } on Exception catch (_) {
       emit(
         state.copyWith(
           status: BookingStatus.failure,

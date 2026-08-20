@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
-import 'package:intl/intl.dart';
 import 'package:sham_booking/core/theme/app_colors.dart';
-// تأكد من استيراد مسارات ملفاتك الصحيحة هنا
 import 'package:sham_booking/features/booking/data/models/create_booking_request.dart';
 import 'package:sham_booking/features/booking/presentation/bloc/booking_bloc.dart';
 import 'package:sham_booking/injection_container.dart' as di;
@@ -16,7 +14,6 @@ class CreateBookingScreen extends StatelessWidget {
   const CreateBookingScreen({
     required this.roomId,
     required this.hotelId,
-    // تم إزالة checkIn و checkOut من هنا
     super.key,
   });
 
@@ -100,8 +97,6 @@ class _CreateBookingViewState extends State<_CreateBookingView> {
           data: Theme.of(context).copyWith(
             colorScheme: const ColorScheme.light(
               primary: AppColors.primary,
-              onPrimary: Colors.white,
-              surface: AppColors.surfaceContainerLowest,
               onSurface: AppColors.onSurface,
             ),
           ),
@@ -175,7 +170,7 @@ class _CreateBookingViewState extends State<_CreateBookingView> {
                   ),
                   child: Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.calendar_month_outlined,
                         color: AppColors.primary,
                       ),
@@ -315,12 +310,15 @@ class _CreateBookingViewState extends State<_CreateBookingView> {
                           color: AppColors.primaryFixedDim, // لون خلفية خفيف
                           borderRadius: BorderRadius.circular(12.r),
                           border: Border.all(
-                            color: AppColors.primary.withOpacity(0.5),
+                            color: AppColors.primary.withValues(alpha: 0.5),
                           ),
                         ),
                         child: Row(
                           children: [
-                            Icon(Icons.check_circle, color: AppColors.primary),
+                            const Icon(
+                              Icons.check_circle,
+                              color: AppColors.primary,
+                            ),
                             SizedBox(width: 8.w),
                             Expanded(
                               child: Text(
@@ -500,7 +498,7 @@ class _CreateBookingViewState extends State<_CreateBookingView> {
           boxShadow: isSelected
               ? [
                   BoxShadow(
-                    color: AppColors.primary.withOpacity(0.1),
+                    color: AppColors.primary.withValues(alpha: 0.1),
                     blurRadius: 8,
                     offset: const Offset(0, 4),
                   ),

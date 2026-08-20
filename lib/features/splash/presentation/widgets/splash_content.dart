@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:sham_booking/core/theme/app_decorations.dart';
 import 'package:sham_booking/core/theme/app_text_styles.dart';
 
 class SplashContent extends StatelessWidget {

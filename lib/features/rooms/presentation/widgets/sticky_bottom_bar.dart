@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sham_booking/core/theme/app_colors.dart';
 
@@ -34,7 +33,7 @@ class AppTypography {
   static final TextStyle labelSm = GoogleFonts.plusJakartaSans(
     fontSize: 12,
     fontWeight: FontWeight.w600,
-    height: 1.0,
+    height: 1,
     letterSpacing: 0.6, // 0.05em
   );
 }
@@ -54,7 +53,9 @@ class StickyBottomBar extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.backgroundStart,
         border: Border(
-          top: BorderSide(color: AppColors.primaryContainer.withOpacity(0.1)),
+          top: BorderSide(
+            color: AppColors.primaryContainer.withValues(alpha: 0.1),
+          ),
         ),
         boxShadow: const [
           BoxShadow(
@@ -102,9 +103,9 @@ class StickyBottomBar extends StatelessWidget {
                 borderRadius: BorderRadius.circular(4),
               ),
               elevation: 8,
-              textStyle: AppTypography.labelSm.copyWith(letterSpacing: 2.0),
+              textStyle: AppTypography.labelSm.copyWith(letterSpacing: 2),
             ),
-            child: Text("booking.book_now".tr()),
+            child: Text('booking.book_now'.tr()),
           ),
         ],
       ),

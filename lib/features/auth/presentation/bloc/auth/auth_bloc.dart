@@ -19,7 +19,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     required this.verificationCodeUseCase,
     required this.signInUserUseCase,
     required this.signUpUserUseCase,
-  }) : super(AuthState()) {
+  }) : super(const AuthState()) {
     on<TogglePasswordVisibility>((event, emit) {
       emit(state.copyWith(isPasswordObscure: !state.isPasswordObscure));
     });
@@ -57,9 +57,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         },
         (_) {
           emit(state.copyWith(status: AuthStatus.success));
-          // add(
-          //   SendVerificationCodeEvent(),
-          // );
         },
       );
     });

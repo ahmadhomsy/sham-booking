@@ -25,7 +25,7 @@ class _RoomDescriptionSectionState extends State<RoomDescriptionSection> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           'About this room',
           style: AppTextStyles.normal28primaryBold,
         ),
@@ -64,5 +64,3 @@ class _RoomDescriptionSectionState extends State<RoomDescriptionSection> {
     );
   }
 }
-
-

@@ -132,42 +132,4 @@ class LocalAuthDataSourceImpl implements LocalAuthDataSource {
     await box.write(hasPaymentMethodKey, true);
     return unit;
   }
-
-  // @override
-  // Future<GetProfileResponseLocal> getProfile() async {
-  //   final userData = _readUserData();
-  //
-  //   return GetProfileResponseLocal.fromJson(
-  //     userData,
-  //   );
-  // }
-  //
-  // Map<String, dynamic> _readUserData() {
-  //   final dynamic data = box.read<dynamic>(userKey);
-  //
-  //   if (data is Map) {
-  //     final map = Map<String, dynamic>.from(data);
-  //     final nestedUser = map['user'];
-  //
-  //     if (nestedUser is Map) {
-  //       return Map<String, dynamic>.from(nestedUser);
-  //     }
-  //
-  //     if (nestedUser != null) {
-  //       return Map<String, dynamic>.from(
-  //         jsonDecode(jsonEncode(nestedUser)) as Map,
-  //       );
-  //     }
-  //
-  //     return map;
-  //   }
-  //
-  //   if (data != null) {
-  //     return Map<String, dynamic>.from(
-  //       jsonDecode(jsonEncode(data)) as Map,
-  //     );
-  //   }
-  //
-  //   return <String, dynamic>{};
-  // }
 }

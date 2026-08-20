@@ -16,10 +16,10 @@ class DecorativeCircles extends StatelessWidget {
             height: 200,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: AppColors.secondaryContainer.withOpacity(0.2),
+              color: AppColors.secondaryContainer.withValues(alpha: 0.2),
               boxShadow: [
                 BoxShadow(
-                  color: AppColors.secondaryContainer.withOpacity(0.3),
+                  color: AppColors.secondaryContainer.withValues(alpha: 0.3),
                   blurRadius: 60,
                   spreadRadius: 20,
                 ),
@@ -35,10 +35,10 @@ class DecorativeCircles extends StatelessWidget {
             height: 200,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: AppColors.primaryContainer.withOpacity(0.1),
+              color: AppColors.primaryContainer.withValues(alpha: 0.1),
               boxShadow: [
                 BoxShadow(
-                  color: AppColors.primaryContainer.withOpacity(0.15),
+                  color: AppColors.primaryContainer.withValues(alpha: 0.15),
                   blurRadius: 60,
                   spreadRadius: 20,
                 ),

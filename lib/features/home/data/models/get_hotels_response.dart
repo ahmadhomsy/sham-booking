@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import 'hotel_model.dart';
+import 'package:sham_booking/features/home/data/models/hotel_model.dart';
 
 part 'get_hotels_response.g.dart';
 

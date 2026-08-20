@@ -79,7 +79,7 @@ Future<void> init() async {
 
   sl
     // Theme Cubit
-    ..registerLazySingleton<ThemeCubit>(() => ThemeCubit())
+    ..registerLazySingleton<ThemeCubit>(ThemeCubit.new)
     // Chat & Cubits
     ..registerFactory(
       () => ChatCubit(sendMessageUseCase: sl(), speechService: sl()),

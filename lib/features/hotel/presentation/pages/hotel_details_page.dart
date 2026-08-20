@@ -9,7 +9,6 @@ import 'package:sham_booking/features/hotel/presentation/widgets/custom_divider.
 import 'package:sham_booking/features/hotel/presentation/widgets/hero_section.dart';
 import 'package:sham_booking/features/hotel/presentation/widgets/hotel_contact_section.dart';
 import 'package:sham_booking/features/hotel/presentation/widgets/hotel_gallery_section.dart';
-import 'package:sham_booking/features/hotel/presentation/widgets/hotel_video_section.dart';
 import 'package:sham_booking/features/hotel/presentation/widgets/map_snippet_section.dart';
 import 'package:sham_booking/features/hotel/presentation/widgets/room_selection_section.dart';
 
@@ -120,14 +119,6 @@ class HotelDetailsPage extends StatelessWidget {
                               images: hotel.images,
                             ),
 
-                            // if (hotel.videoUrl != null &&
-                            //     hotel.videoUrl!.isNotEmpty) ...[
-                            //   const SizedBox(height: 32),
-                            //
-                            //   HotelVideoSection(
-                            //     videoUrl: hotel.videoUrl!,
-                            //   ),
-                            // ],
                             const SizedBox(height: 32),
 
                             HotelContactSection(
@@ -331,84 +322,6 @@ class _SectionTitle extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-}
-
-class _BottomBookingBar extends StatelessWidget {
-  const _BottomBookingBar({
-    required this.hotelName,
-  });
-
-  final String hotelName;
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      elevation: 10,
-      borderRadius: BorderRadius.circular(18),
-      color: AppColors.primaryContainer,
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Row(
-          children: [
-            Expanded(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'hotel_details.ready_to_stay'.tr(),
-                    style: GoogleFonts.plusJakartaSans(
-                      fontSize: 12,
-                      color: Colors.white70,
-                    ),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    hotelName.isEmpty
-                        ? 'hotel_details.choose_your_room'.tr()
-                        : hotelName,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: GoogleFonts.plusJakartaSans(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            const SizedBox(width: 12),
-
-            ElevatedButton(
-              onPressed: () {
-                // الحجز
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.secondaryContainer,
-                foregroundColor: AppColors.primaryContainer,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 22,
-                  vertical: 15,
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                elevation: 0,
-              ),
-              child: Text(
-                'hotel_details.book_now'.tr(),
-                style: const TextStyle(
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }

@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:retrofit/dio.dart';
 import 'package:sham_booking/core/constants/messages.dart';
 import 'package:sham_booking/core/error/failures.dart';
 import 'package:sham_booking/features/booking/data/models/cancel_request.dart';

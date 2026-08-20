@@ -11,8 +11,8 @@ class ThemeCubit extends Cubit<ThemeMode> {
     return isDark ? ThemeMode.dark : ThemeMode.light;
   }
 
-  void toggleTheme(bool isDark) {
-    box.write(isDarkModeKey, isDark);
+  Future<void> toggleTheme({required bool isDark}) async {
+    await box.write(isDarkModeKey, isDark);
     emit(isDark ? ThemeMode.dark : ThemeMode.light);
   }
 

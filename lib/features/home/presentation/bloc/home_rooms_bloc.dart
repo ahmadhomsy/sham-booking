@@ -35,7 +35,6 @@ class HomeRoomsBloc extends Bloc<HomeRoomsEvent, HomeRoomsState> {
           state.copyWith(
             status: HomeRoomsStatus.failure,
             errorMessage: _mapFailureToMessage(failure),
-            clearErrorMessage: false,
           ),
         );
       },
